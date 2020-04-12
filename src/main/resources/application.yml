@@ -1,0 +1,44 @@
+#yml 文件  与  properties 均为配置文件    yml文件的值   一定要有个空格   注意层级关系
+server:
+  port: 8090
+  tomcat:
+    uri-encoding: utf-8
+  servlet:
+    context-path: /fitness
+
+
+
+spring:
+  mvc:
+    static-path-pattern: classpath:/static/**
+
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/fitness?characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: root
+  thymeleaf:
+#    prefix: classpath:/templates/
+    prefix: classpath:/
+    suffix: .html
+    cache: false
+    mode: HTML
+  jpa:
+    database: mysql
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+  #      naming-strategy: org.hibernate.cfg.ImprovedNamingStratey
+  #    properties:
+  #      hibernate.dialect: org.hibernate.dialect.MySQL5Dialect
+  #      hibernate.hbm2ddl.auto: update
+  main:
+    allow-bean-definition-overriding: true
+
+mybatis:
+  type-aliases-package: cn.njxz.fitness.model
+  mapper-locations: classpath:/mapper/*.xml
+
+logging:
+  level:
+    root: info

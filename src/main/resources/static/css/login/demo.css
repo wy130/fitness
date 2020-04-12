@@ -1,0 +1,102 @@
+*, *:after, *:before { -webkit-box-sizing: border-box; box-sizing: border-box; }
+.clearfix:before, .clearfix:after { content: ''; display: table; }
+.clearfix:after { clear: both; }
+
+body {
+	background: #fff;
+	color: #383a3c;
+	font-weight: 400;
+	font-size: 1em;
+	line-height: 1.25;
+	font-family: 'Raleway', Calibri, Arial, sans-serif;
+}
+
+a, button {
+	outline: none;
+
+}
+
+a {
+	color: #566473;
+	text-decoration: none;
+
+}
+
+a:hover, a:focus {
+	color: #34495e;
+}
+
+section {
+	padding: 1em;
+	text-align: center;
+}
+
+p.ref {
+	text-align: center;
+	padding: 2em 1em;
+}
+.footer
+{
+	position: fixed;
+	top: auto;
+	right: 0;
+	bottom: 0;
+	left: 0;
+}
+.footer_signup_link
+{
+	position: absolute;
+	width:141px;
+	height:78px;
+	bottom: 0;
+	padding: 0 20px;
+	margin: 0 0 13px 0;
+	line-height: 25px;
+	text-align: center;
+	opacity: 1;
+	color: #fff;
+}
+.signup_link
+{
+	display: block;
+	height: 45px;
+	padding: 0 10px;
+	margin: 0 0 8px 0;
+	font-size: 16px;
+	font-weight: bold;
+	line-height: 45px;
+	border: 0;
+	border-radius: 2px;
+	color: #fff;
+	background: rgba(255,255,255,0.33);
+}
+.link
+{
+	font-size: 14px;
+	padding-right: 5px;
+	margin-right: 12px;
+	color: #fff;
+}
+.design_show
+{
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	padding: 0 12px;
+	margin: 0 0 13px 0;
+	line-height: 25px;
+}
+.designer_info
+{
+	position: relative;
+	color: #FFFFFF;
+}
+#face
+{
+	margin: 0 0 0 10px;
+	vertical-align: middle;
+	border-radius:20px;
+	padding: 0;
+	height: 24px;
+	width: 24px;
+}

@@ -1,0 +1,195 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"  xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>用户注册</title>
+
+    <script type="text/javascript">
+
+        function checkpassword() {
+            var pwd1 = document.getElementById("password").value;
+            var pwd2 = document.getElementById("confirm_password").value;
+
+            <!-- 对比两次输入的密码 -->
+            if(pwd1 == pwd2) {
+                document.getElementById("tishi").innerHTML="<font color='green'>两次密码输入一致</font>";
+                document.getElementById("submit").disabled = false;
+            }
+            else {
+                document.getElementById("tishi").innerHTML="<font color='red'>两次输入密码不一致</font>";
+                    document.getElementById("submit").disabled = true;
+            }
+        }
+        <!--验证-->
+        function checkname(){
+            var uName = document.getElementById("username").value;
+            var uNameMode=/^[a-zA-Z0-9_-]{3,7}$/;
+            if (uNameMode.test(uName)) {
+                $.ajax({
+                    type: 'post',//请求方式
+                    url: 'http://localhost:8090/fitness/user/checkUname',//请求的 url地址  建议使用绝对地址
+                    data: 'uName=' + uName,//请求携带的 参数
+                    dataType:"json",//如果后台返回的数据是String改造的  这里需要指定返回类型  否则 result.msg取不到值
+                    success: function (result) {//注意 success中 function的data 可以解析后台响应的数据
+                        //success是回调函数  可以将 后台数据返回到 当前页面   接着 进行具体 操作
+                        if("ok"==result.msg){
+                            document.getElementById("nameErr").innerHTML
+                                = "<font color='green'>&radic;该用户名可注册！</font>";
+                            document.getElementById("submit").disabled = false;
+                        }else{
+                            document.getElementById("nameErr").innerHTML
+                                = "<font color='red'>&times;该用户名已存在！</font>";
+                            document.getElementById("submit").disabled = true;
+                        }
+                    },
+                    error: function () {//失败的回调函数   如果url地址不对  或者 后台有错   都会进入该方法 (可以不写 )
+                        console.log('通讯失败!');
+                    }
+                });
+            }else {
+                document.getElementById("nameErr").innerHTML="<font color='red'>&times;用户名需3到7位（字母，数字，下划线，减号）!</font>";
+            }}
+        function checkpwd(){
+            var uPassword = document.getElementById("uPwd").value;
+            var upwdMode= /^[0-9A-z\u4e00-\u9fa5]{3,10}$/;
+            if (upwdMode.test(uPassword)) {
+                document.getElementById("pwdErr").innerHTML
+                    = "<font color='green'>&radic;用户密码合法！</font>";
+            }else {
+                document.getElementById("pwdErr").innerHTML
+                    = "<font color='red'>&times;用户密码不合法！</font>";
+            }
+        }
+
+        function checkphone() {
+            var uPhone=document.getElementById("mobile").value;
+            var uPhoneMode=/^1[3456789]\d{9}$/;
+            if (uPhoneMode.test(uPhone)) {
+                //使用ajax动态交互验证管理员名称是否重复
+                $.ajax({
+                    type: 'post',
+                    url: 'http://localhost:8090/fitness/user/checkUphone',
+                    data: 'uPhone='+uPhone,
+                    dataType: "json",
+                    success:function(result){
+                        if ("ok"==result.msg){
+                            document.getElementById("phoneErr").innerHTML="<font color='green'>该手机号可注册</font>";
+                            document.getElementById("submit").disabled = false;
+                        }else {
+                            document.getElementById("phoneErr").innerHTML="<font color='red'>该手机号已存在</font>";
+                            document.getElementById("submit").disabled = true;
+                        }
+                    },
+                    error:function () {
+                    }
+                });
+            }else {
+                document.getElementById("phoneErr").innerHTML="<font color='red'>手机号格式不对</font>";
+                document.getElementById("submit").disabled = true;
+            }
+        }
+        function getPhoneVerification(){
+            var memberphoneinput = document.getElementById("mobile").value;
+            $.ajax({
+                type: 'post',//请求方式
+                url: 'http://localhost:8090/fitness/user/getPhoneVerification',//请求的 url地址  建议使用绝对地址
+                data: 'memberphone=' + memberphoneinput,//请求携带的 参数
+                dataType:"json",//如果后台返回的数据是String改造的  这里需要指定返回类型  否则 result.msg取不到值
+                success: function (result) {//注意 success中 function的data 可以解析后台响应的数据
+                    //success是回调函数  可以将 后台数据返回到 当前页面   接着 进行具体 操作
+                    if("ok"==result.msg){
+                        alert("获取成功，有效期五分钟，请尽快输入！");
+                    }else{
+                        alert("获取失败");
+                    }
+                },
+                error: function () {//失败的回调函数   如果url地址不对  或者 后台有错   都会进入该方法 (可以不写 )
+                    console.log('通讯失败!');
+                }
+            });
+        }
+
+    </script>
+    <script type="text/javascript" src="http://localhost:8090/fitness/static/js/admin/jquery-2.1.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="http://localhost:8090/fitness/static/css/login/normalize.css" th:href="@{http://localhost:8090/fitness/static/css/login/normalize.css}"/>
+    <link rel="stylesheet" type="text/css" href="http://localhost:8090/fitness/static/css/login/demo.css" th:href="@{http://localhost:8090/fitness/static/css/login/demo.css}"/>
+    <!--必要样式-->
+    <link rel="stylesheet" type="text/css" href="http://localhost:8090/fitness/static/css/login/component.css" th:href="@{http://localhost:8090/fitness/static/css/login/component.css}"/>
+    <!--[if IE]>
+    <script src="http://localhost:8090/fitness/static/js/login/html5.js"></script>
+
+    <![endif]-->
+</head>
+<body>
+<div class="container demo-1">
+    <div class="content">
+        <div id="large-header" class="large-header">
+            <canvas id="demo-canvas"></canvas>
+            <div class="logo_box">
+                <h3>Fitness. Sign in</h3>
+                <form  id="f" action="http://localhost:8090/fitness/user/toregister" name="f" method="post" onsubmit="return checkForm(this);">
+                    <div class="input_outer">
+                        <span class="u_user"></span>
+                        <input id="username" name="uName" class="text" style="color: #FFFFFF !important" type="text" onkeyup="checkname()" placeholder="请输入用户名"  required="true" >
+                        <p style="color: red; height: 20px; width: 140px; font-size: 12px;"
+                          id="nameErr" th:text="${nameErr}"></p>
+                    </div>
+                    <div class="input_outer">
+                        <span class="phone_logo"></span>
+                        <input id="mobile" name="uPhone" class="text" style="color: #FFFFFF !important" type="text" placeholder="请输入手机号" onkeyup="checkphone()"  required="true" >
+                        <p style="color: red; height: 20px; width: 140px; font-size: 12px;"
+                           id="phoneErr" th:text="${phoneErr}"></p>
+                    </div>
+
+                    <div class="input_outer">
+                        <span class="us_uer"></span>
+                        <input id="password" name="uPwd" class="text" style="color: #FFFFFF !important;  z-index:100;" type="password" onkeyup="checkpwd()" placeholder="请输入密码"  required="true" >
+                        <p style="color: red; height: 20px; width: 140px; font-size: 12px;"
+                            id="pwdErr" th:text="${pwdErr}"></p>
+                    </div>
+                    <div class="input_outer">
+                        <span class="us_uer"></span>
+                    <input class="text" style="color: #FFFFFF !important;  z-index:100;" type="password" placeholder="确认密码" id="confirm_password"  onkeyup="checkpassword()" required="true" >
+                        <p style=" height: 20px; width: 140px; font-size: 12px;" id="tishi"></p>
+                    </div>
+                    <div class="input_outer">
+                        <input type="text"  style="height: 46px; width: 90px;" class="text"  id="imagecode" name="checkcode" onkeyup="checkimagecode()"/>
+                        <button type="button"  style="height: 20px; width: 140px; font-size: 12px;"
+                                onclick="getPhoneVerification()">
+                            获取短信验证码</button>
+                        <span style="color: red; height: 20px; width: 120px; font-size: 12px;"
+                           id="codeErr" th:text="${codeErr}"></span><br/>
+                    </div>
+                    <div class="mb2"><a  id="signup_forms_submit" class="act-but submit" href="javascript:;" style="color: #FFFFFF" onclick="document:f.submit()">注册</a></div>
+                </form>
+                <div class="footer">
+                    <div class="footer_signup_link">
+                        <a class="signup_link" href="http://localhost:8090/fitness/templates/user/login.html">登录</a>
+                        <a href="http://localhost:8090/fitness/templates/admin/login.html" target="_blank" class="link unnamed_1">管理员登录</a>
+                    </div>
+                    <div class="design_show">
+                        <div class="designer_info">
+                            <a href="#">Designed by  <strong>WuYue</strong></a>
+                            <a href="#" target="_blank" class="face"><img id="face" src="../../static/images/login/face.jpg" alt="designed by WuYue"/></a>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+    <!-- /container -->
+    <script src="http://localhost:8090/fitness/static/js/login/TweenLite.min.js"></script>
+    <script src="http://localhost:8090/fitness/static/js/login/EasePack.min.js"></script>
+    <script src="http://localhost:8090/fitness/static/js/login/rAF.js"></script>
+    <script src="http://localhost:8090/fitness/static/js/login/demo-1.js"></script>
+</body>
+
+</html>

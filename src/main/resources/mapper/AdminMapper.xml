@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.njxz.fitness.mapper.AdminMapper">
+  <resultMap id="BaseResultMap" type="cn.njxz.fitness.model.Admin">
+    <id column="A_ID" jdbcType="INTEGER" property="aId" />
+    <result column="A_NAME" jdbcType="VARCHAR" property="aName" />
+    <result column="A_PWD" jdbcType="VARCHAR" property="aPwd" />
+    <result column="A_PHONE" jdbcType="VARCHAR" property="aPhone" />
+    <result column="A_TYPE" jdbcType="VARCHAR" property="aType" />
+    <result column="A_STATUS" jdbcType="VARCHAR" property="aStatus" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    A_ID, A_NAME, A_PWD, A_PHONE,  A_TYPE, A_STATUS
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from admin
+    where A_ID = #{aId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from admin
+    where A_ID = #{aId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.njxz.fitness.model.Admin">
+    insert into admin (A_ID, A_NAME, A_PWD, 
+      A_SEX, A_AGE, A_PHONE, 
+      A_EMAIL, A_TYPE, REGDATE, 
+      A_STATUS)
+    values (#{aId,jdbcType=INTEGER}, #{aName,jdbcType=VARCHAR}, #{aPwd,jdbcType=VARCHAR}, 
+       #{aPhone,jdbcType=VARCHAR},
+       #{aType,jdbcType=VARCHAR},
+      #{aStatus,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.njxz.fitness.model.Admin">
+    insert into admin
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="aId != null">
+        A_ID,
+      </if>
+      <if test="aName != null">
+        A_NAME,
+      </if>
+      <if test="aPwd != null">
+        A_PWD,
+      </if>
+
+      <if test="aPhone != null">
+        A_PHONE,
+      </if>
+
+      <if test="aType != null">
+        A_TYPE,
+      </if>
+
+      <if test="aStatus != null">
+        A_STATUS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="aId != null">
+        #{aId,jdbcType=INTEGER},
+      </if>
+      <if test="aName != null">
+        #{aName,jdbcType=VARCHAR},
+      </if>
+      <if test="aPwd != null">
+        #{aPwd,jdbcType=VARCHAR},
+      </if>
+
+      <if test="aPhone != null">
+        #{aPhone,jdbcType=VARCHAR},
+      </if>
+
+      <if test="aType != null">
+        #{aType,jdbcType=VARCHAR},
+      </if>
+
+      <if test="aStatus != null">
+        #{aStatus,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.njxz.fitness.model.Admin">
+    update admin
+    <set>
+      <if test="aName != null">
+        A_NAME = #{aName,jdbcType=VARCHAR},
+      </if>
+      <if test="aPwd != null">
+        A_PWD = #{aPwd,jdbcType=VARCHAR},
+      </if>
+
+      <if test="aPhone != null">
+        A_PHONE = #{aPhone,jdbcType=VARCHAR},
+      </if>
+
+      <if test="aType != null">
+        A_TYPE = #{aType,jdbcType=VARCHAR},
+      </if>
+
+      <if test="aStatus != null">
+        A_STATUS = #{aStatus,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where A_ID = #{aId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.njxz.fitness.model.Admin">
+    update admin
+    set A_NAME = #{aName,jdbcType=VARCHAR},
+      A_PWD = #{aPwd,jdbcType=VARCHAR},
+      A_PHONE = #{aPhone,jdbcType=VARCHAR},
+      A_TYPE = #{aType,jdbcType=VARCHAR},
+      A_STATUS = #{aStatus,jdbcType=VARCHAR}
+    where A_ID = #{aId,jdbcType=INTEGER}
+  </update>
+  <select id="countAdmin"  resultType="java.lang.Integer" >
+    select count(*) from admin
+  </select>
+  <!--  吴玥 新加 -->
+  <select id="findAdminByName"  parameterType="cn.njxz.fitness.model.Admin" resultMap="BaseResultMap" >
+    select  *  from admin where A_NAME = #{username}
+  </select>
+  <select id="selectByName" resultMap="BaseResultMap" parameterType="cn.njxz.fitness.model.Admin">
+    select
+    <include refid="Base_Column_List"/>
+    from admin
+    where 1=1
+    <if test="username!=null"> and A_NAME LIKE "%"#{username}"%"</if>
+    limit #{pageNum},#{pageSize}
+  </select>
+
+  <select id="countselectByName" parameterType="cn.njxz.fitness.model.Admin"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from admin
+    where 1=1
+    <if test="username!=null"> and A_NAME LIKE "%"#{username}"%"</if>
+  </select>
+  <select id="selectAll" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from admin
+  </select>
+</mapper>

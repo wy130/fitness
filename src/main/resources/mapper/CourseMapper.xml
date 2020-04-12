@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.njxz.fitness.mapper.CourseMapper">
+  <resultMap id="BaseResultMap" type="cn.njxz.fitness.model.Course">
+    <id column="C_ID" jdbcType="INTEGER" property="cId" />
+    <result column="C_NAME" jdbcType="VARCHAR" property="cName" />
+    <result column="C_LENGTH" jdbcType="VARCHAR" property="cLength" />
+    <result column="C_CL_ID" jdbcType="INTEGER" property="cClId" />
+    <result column="C_CO_ID" jdbcType="INTEGER" property="cCoId" />
+    <result column="C_CT_ID" jdbcType="INTEGER" property="cCtId" />
+    <result column="DESCRIPTION" jdbcType="VARCHAR" property="description" />
+    <result column="IMAGE" jdbcType="VARCHAR" property="image" />
+    <result column="C_EP_ID" jdbcType="INTEGER" property="cEpId" />
+    <result column="C_STATUS" jdbcType="INTEGER" property="cStatus" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    C_ID, C_NAME, C_LENGTH, C_CL_ID, C_CO_ID, C_CT_ID, DESCRIPTION, IMAGE, C_EP_ID, C_STATUS
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from course
+    where C_ID = #{cId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from course
+    where C_ID = #{cId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.njxz.fitness.model.Course">
+    insert into course (C_ID, C_NAME, C_LENGTH, 
+      C_CL_ID, C_CO_ID, C_CT_ID, 
+      DESCRIPTION, IMAGE, C_EP_ID, 
+      C_STATUS)
+    values (#{cId,jdbcType=INTEGER}, #{cName,jdbcType=VARCHAR}, #{cLength,jdbcType=VARCHAR}, 
+      #{cClId,jdbcType=INTEGER}, #{cCoId,jdbcType=INTEGER}, #{cCtId,jdbcType=INTEGER}, 
+      #{description,jdbcType=VARCHAR}, #{image,jdbcType=VARCHAR}, #{cEpId,jdbcType=INTEGER}, 
+      #{cStatus,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.njxz.fitness.model.Course">
+    insert into course
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="cId != null">
+        C_ID,
+      </if>
+      <if test="cName != null">
+        C_NAME,
+      </if>
+      <if test="cLength != null">
+        C_LENGTH,
+      </if>
+      <if test="cClId != null">
+        C_CL_ID,
+      </if>
+      <if test="cCoId != null">
+        C_CO_ID,
+      </if>
+      <if test="cCtId != null">
+        C_CT_ID,
+      </if>
+      <if test="description != null">
+        DESCRIPTION,
+      </if>
+      <if test="image != null">
+        IMAGE,
+      </if>
+      <if test="cEpId != null">
+        C_EP_ID,
+      </if>
+      <if test="cStatus != null">
+        C_STATUS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="cId != null">
+        #{cId,jdbcType=INTEGER},
+      </if>
+      <if test="cName != null">
+        #{cName,jdbcType=VARCHAR},
+      </if>
+      <if test="cLength != null">
+        #{cLength,jdbcType=VARCHAR},
+      </if>
+      <if test="cClId != null">
+        #{cClId,jdbcType=INTEGER},
+      </if>
+      <if test="cCoId != null">
+        #{cCoId,jdbcType=INTEGER},
+      </if>
+      <if test="cCtId != null">
+        #{cCtId,jdbcType=INTEGER},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null">
+        #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="cEpId != null">
+        #{cEpId,jdbcType=INTEGER},
+      </if>
+      <if test="cStatus != null">
+        #{cStatus,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.njxz.fitness.model.Course">
+    update course
+    <set>
+      <if test="cName != null">
+        C_NAME = #{cName,jdbcType=VARCHAR},
+      </if>
+      <if test="cLength != null">
+        C_LENGTH = #{cLength,jdbcType=VARCHAR},
+      </if>
+      <if test="cClId != null">
+        C_CL_ID = #{cClId,jdbcType=INTEGER},
+      </if>
+      <if test="cCoId != null">
+        C_CO_ID = #{cCoId,jdbcType=INTEGER},
+      </if>
+      <if test="cCtId != null">
+        C_CT_ID = #{cCtId,jdbcType=INTEGER},
+      </if>
+      <if test="description != null">
+        DESCRIPTION = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null">
+        IMAGE = #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="cEpId != null">
+        C_EP_ID = #{cEpId,jdbcType=INTEGER},
+      </if>
+      <if test="cStatus != null">
+        C_STATUS = #{cStatus,jdbcType=INTEGER},
+      </if>
+    </set>
+    where C_ID = #{cId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.njxz.fitness.model.Course">
+    update course
+    set C_NAME = #{cName,jdbcType=VARCHAR},
+      C_LENGTH = #{cLength,jdbcType=VARCHAR},
+      C_CL_ID = #{cClId,jdbcType=INTEGER},
+      C_CO_ID = #{cCoId,jdbcType=INTEGER},
+      C_CT_ID = #{cCtId,jdbcType=INTEGER},
+      DESCRIPTION = #{description,jdbcType=VARCHAR},
+      IMAGE = #{image,jdbcType=VARCHAR},
+      C_EP_ID = #{cEpId,jdbcType=INTEGER},
+      C_STATUS = #{cStatus,jdbcType=INTEGER}
+    where C_ID = #{cId,jdbcType=INTEGER}
+  </update>
+  <select id="findAllCourse"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from course
+  </select>
+</mapper>

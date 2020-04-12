@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.njxz.fitness.mapper.UserMapper">
+  <resultMap id="BaseResultMap" type="cn.njxz.fitness.model.User">
+    <id column="U_ID" jdbcType="INTEGER" property="uId" />
+    <result column="U_NAME" jdbcType="VARCHAR" property="uName" />
+    <result column="U_PWD" jdbcType="VARCHAR" property="uPwd" />
+    <result column="U_EMAIL" jdbcType="VARCHAR" property="uEmail" />
+    <result column="U_PHONE" jdbcType="VARCHAR" property="uPhone" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    U_ID, U_NAME, U_PWD,  U_EMAIL, U_PHONE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where U_ID = #{uId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from user
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from user
+    where U_ID = #{uId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.njxz.fitness.model.User">
+    insert into user (U_ID, U_NAME, U_PWD, 
+       U_EMAIL, U_PHONE)
+    values (#{uId,jdbcType=INTEGER}, #{uName,jdbcType=VARCHAR}, #{uPwd,jdbcType=VARCHAR}, 
+       #{uEmail,jdbcType=VARCHAR}, #{uPhone,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.njxz.fitness.model.User">
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="uId != null">
+        U_ID,
+      </if>
+      <if test="uName != null">
+        U_NAME,
+      </if>
+      <if test="uPwd != null">
+        U_PWD,
+      </if>
+      <if test="uEmail != null">
+        U_EMAIL,
+      </if>
+      <if test="uPhone != null">
+        U_PHONE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="uId != null">
+        #{uId,jdbcType=INTEGER},
+      </if>
+      <if test="uName != null">
+        #{uName,jdbcType=VARCHAR},
+      </if>
+      <if test="uPwd != null">
+        #{uPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="uEmail != null">
+        #{uEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="uPhone != null">
+        #{uPhone,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.njxz.fitness.model.User">
+    update user
+    <set>
+      <if test="uName != null">
+        U_NAME = #{uName,jdbcType=VARCHAR},
+      </if>
+      <if test="uPwd != null">
+        U_PWD = #{uPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="uEmail != null">
+        U_EMAIL = #{uEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="uPhone != null">
+        U_PHONE = #{uPhone,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where U_ID = #{uId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.njxz.fitness.model.User">
+    update user
+    set U_NAME = #{uName,jdbcType=VARCHAR},
+      U_PWD = #{uPwd,jdbcType=VARCHAR},
+      U_EMAIL = #{uEmail,jdbcType=VARCHAR},
+      U_PHONE = #{uPhone,jdbcType=VARCHAR}
+    where U_ID = #{uId,jdbcType=INTEGER}
+  </update>
+  <select id="findUserByName" parameterType="cn.njxz.fitness.model.User" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from user
+    where U_NAME = #{uName,jdbcType=VARCHAR}
+  </select>
+  <select id="findUserByPhone" parameterType="cn.njxz.fitness.model.User" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from user
+    where  U_PHONE = #{uPhone,jdbcType=VARCHAR}
+  </select>
+  <select id="findUserByEmail" parameterType="cn.njxz.fitness.model.User" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from user
+    where  U_EMAIL = #{uEmail,jdbcType=VARCHAR}
+  </select>
+  <!-- 吴玥新加 -->
+  <select id="selectByName" resultMap="BaseResultMap" parameterType="cn.njxz.fitness.model.User">
+    select
+    <include refid="Base_Column_List"/>
+    from user
+    where 1=1
+    <if test="username!=null"> and U_NAME LIKE "%"#{username}"%"</if>
+    limit #{pageNum},#{pageSize}
+  </select>
+
+  <select id="countselectByName" parameterType="cn.njxz.fitness.model.User"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from user
+    where 1=1
+    <if test="username!=null"> and U_NAME LIKE "%"#{username}"%"</if>
+  </select>
+  <select id="userCount"  resultType="java.lang.Integer" >
+    select count(*) from user
+  </select>
+</mapper>

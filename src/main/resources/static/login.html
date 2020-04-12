@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" class="no-js" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>用户登录</title>
+    <script type="text/javascript">
+        function reloadcode() {
+            //通过Js操作 页面元素    这里  找到id为id的元素  将其src  设置为 ImageServlet
+            document.getElementById("code").src = "http://localhost:8090/fitness/image/imageCode";
+        }
+
+        //传入值非JSON,返回值JSON
+        function checkimagecode(){
+            var imagecode = document.getElementById("imagecode").value;
+            $.ajax({
+                type: 'post',//请求方式
+                url: 'http://localhost:8090/fitness/user/checkImageCode',//请求的 url地址  建议使用绝对地址
+                data: 'imagecode=' + imagecode,//请求携带的 参数
+                dataType:"json",//如果后台返回的数据是String改造的  这里需要指定返回类型  否则 result.msg取不到值
+                success: function (result) {//注意 success中 function的data 可以解析后台响应的数据
+                    //success是回调函数  可以将 后台数据返回到 当前页面   接着 进行具体 操作
+                    if("ok"==result.msg){
+                        document.getElementById("codeErr").innerHTML
+                            = "<font color='green'>&radic;验证码正确！</font>";
+                    }else{
+                        document.getElementById("codeErr").innerHTML
+                            = "<font color='red'>&times;验证码错误！</font>";
+                    }
+                },
+                error: function () {//失败的回调函数   如果url地址不对  或者 后台有错   都会进入该方法 (可以不写 )
+                    console.log('通讯失败!');
+                }
+            });
+        }
+    </script>
+    <script type="text/javascript" src="http://localhost:8090/fitness/static/js/admin/jquery-2.1.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="http://localhost:8090/fitness/static/css/login/normalize.css" th:href="@{http://localhost:8090/fitness/static/css/login/normalize.css}"/>
+    <link rel="stylesheet" type="text/css" href="http://localhost:8090/fitness/static/css/login/demo.css" th:href="@{http://localhost:8090/fitness/static/css/login/demo.css}"/>
+    <!--必要样式-->
+    <link rel="stylesheet" type="text/css" href="http://localhost:8090/fitness/static/css/login/component.css" th:href="@{http://localhost:8090/fitness/static/css/login/component.css}"/>
+    <!--[if IE]>
+    <script src="http://localhost:8090/fitness/static/js/login/html5.js"></script>
+
+    <![endif]-->
+</head>
+<body>
+<div class="container demo-1">
+    <div class="content">
+        <div id="large-header" class="large-header">
+            <canvas id="demo-canvas"></canvas>
+            <div class="logo_box">
+                <h3>Fitness. Log in</h3>
+                <form action="http://localhost:8090/fitness/user/login" name="f" method="post">
+                    <div class="input_outer">
+                        <span class="u_user"></span>
+                        <input name="name" class="text" style="color: #FFFFFF !important" type="text" placeholder="请输入用户名/手机号/邮箱">
+                        <p style="color: red; height: 20px; width: 140px; font-size: 12px;"
+                           th:text="${nameErr}"></p>
+                    </div>
+                    <div class="input_outer">
+                        <span class="us_uer"></span>
+                        <input name="pwd" class="text" style="color: #FFFFFF !important;  z-index:100;" type="password" placeholder="请输入密码">
+                        <p style="color: red; height: 20px; width: 140px; font-size: 12px;"
+                           th:text="${pwdErr}"></p>
+                    </div>
+                    <div class="input_outer">
+                        <input type="text" style="height: 46px; width: 90px;" class="text"  id="imagecode" name="imagecode" onkeyup="checkimagecode()" /><img id="code" src = "http://localhost:8090/fitness/image/imageCode"/>
+                        <button style="height: 20px; width: 80px; font-size: 12px;" onclick="reloadcode()" >重换一张</button>
+                        <span style="color: red; height: 20px; width: 120px; font-size: 12px;"
+                              id="codeErr" th:text="${codeErr}"></span><br/>
+                    </div>
+                    <div class="mb2"><a class="act-but submit" href="javascript:;" style="color: #FFFFFF" onclick="document:f.submit()">登录</a></div>
+                </form>
+                <div class="footer">
+                    <div class="footer_signup_link">
+                        <a class="signup_link" href="http://localhost:8090/fitness/templates/user/register.html">注册</a>
+
+
+                        <a href="http://localhost:8090/fitness/templates/admin/login.html" target="_blank" class="link unnamed_1">管理员登录</a>
+
+                    </div>
+                    <div class="design_show">
+                        <div class="designer_info">
+                            <a href="#">Designed by  <strong>WuYue</strong></a>
+                            <a href="#" target="_blank" class="face"><img id="face" src="../../static/images/login/face.jpg" alt="designed by WuYue"/></a>
+                        </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+    </div>
+
+<!-- /container -->
+<script src="http://localhost:8090/fitness/static/js/login/TweenLite.min.js"></script>
+<script src="http://localhost:8090/fitness/static/js/login/EasePack.min.js"></script>
+<script src="http://localhost:8090/fitness/static/js/login/rAF.js"></script>
+<script src="http://localhost:8090/fitness/static/js/login/demo-1.js"></script>
+</body>
+
+</html>

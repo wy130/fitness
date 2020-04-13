@@ -17,16 +17,19 @@ public class AdminServiceImpl implements AdminService {
     @Resource
     private AdminMapper adminMapper;
 
+    @Override
     public int delete(int id) {
 
         return adminMapper.deleteByPrimaryKey(id);
     }
 
+    @Override
     public List<Admin> findAll() {
         List<Admin> findAllList = adminMapper.selectAll();
         return findAllList;
     }
 
+    @Override
     public Admin findById(int id) {
 
         Admin admin = adminMapper.selectByPrimaryKey(id);
@@ -34,39 +37,35 @@ public class AdminServiceImpl implements AdminService {
         return admin;
     }
 
+    @Override
     public void add(Admin admin) {
 
         adminMapper.insert(admin);
     }
 
+    @Override
     public int update(Admin admin) {
-
         return adminMapper.updateByPrimaryKey(admin);
     }
 
-    /* 登陆验证 */
-    public Admin login(String username, String password) {
-        //根据用户名查找用户是否存在
-        Admin admin = adminMapper.findAdminByName(username);
-        if(admin != null && admin.getAPwd().equals(password)){
-            System.out.println("用户存在");
-            System.out.println(admin.getAName());
-            return admin;
-        }
-        System.out.println(username);
-        return null;
+    @Override
+    public Admin findAdminByName(String aName) {
+        return adminMapper.findAdminByName(aName);
     }
-    /*通过用户名查找用户*/
+
+
     @Override
     public List<Admin> selectByName(Map params) {
         return adminMapper.selectByName(params);
     }
-    /*通过用户名查找admin的个数*/
+
+
     @Override
     public List<Admin> countselectByName(String username) {
         return adminMapper.countselectByName(username);
     }
-    /*获得管理员的总个数*/
+
+
     @Override
     public int countAdmin() {
         return adminMapper.countAdmin();

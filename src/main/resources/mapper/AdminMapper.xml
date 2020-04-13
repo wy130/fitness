@@ -24,9 +24,7 @@
   </delete>
   <insert id="insert" parameterType="cn.njxz.fitness.model.Admin">
     insert into admin (A_ID, A_NAME, A_PWD, 
-      A_SEX, A_AGE, A_PHONE, 
-      A_EMAIL, A_TYPE, REGDATE, 
-      A_STATUS)
+      A_PHONE, A_TYPE, A_STATUS)
     values (#{aId,jdbcType=INTEGER}, #{aName,jdbcType=VARCHAR}, #{aPwd,jdbcType=VARCHAR}, 
        #{aPhone,jdbcType=VARCHAR},
        #{aType,jdbcType=VARCHAR},

@@ -7,17 +7,36 @@ import java.util.Map;
 
 public interface AdminService {
     void add(Admin admin);
+
     int update(Admin admin);
+
     int delete(int id);
+
     Admin findById(int id);
+
     List<Admin> findAll();
-    // 通过用户名及密码核查用户登录
-    public Admin login(String username,String password);
-    //通过用户名查找用户
-    List<Admin>  selectByName(Map params);
-    //通过用户名查找admin的个数
+
+    /**
+     * 根据aName 查询该管理员用户
+     * @param aName
+     * @return
+     */
+    Admin findAdminByName(String aName);
+
+    /**
+     * 分页查询管理员
+     * @param params
+     * @return
+     */
+    List<Admin> selectByName(Map params);
+
+
     List<Admin> countselectByName(String username);
-    /*获得管理员的总个数*/
+
+    /**
+     * 查询管理员的数量
+     * @return
+     */
     int countAdmin();
 
 }

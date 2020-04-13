@@ -33,12 +33,14 @@
         <table class="table-edit"  width="95%" align="center">
             <tr class="title"><td colspan="4">基本信息</td>
                 <td>
-                    <input type="hidden" th:value="${admin.id}" name="id" >
+                    <input type="hidden" th:value="${admin.aId}" name="aId" >
                 </td>
             </tr>
 
-            <tr><td>用户名:</td><td><input type="text" name="username"  th:value="${admin.username}" id="username" class="easyui-validatebox" required="true" /></td>
-                <td>密码:</td><td><input type="password" name="password" th:value="${admin.password}" id="password" class="easyui-validatebox" required="true" validType="minLength[5]" /></td></tr>
+            <tr><td>用户名:</td><td><input type="text" name="aName"  th:value="${admin.aName}" id="username"
+                                        class="easyui-validatebox" required="true" /></td>
+                <td>密码:</td><td><input type="password" name="aPwd" th:value="${admin.aPwd}" id="password"
+                                       class="easyui-validatebox" required="true" validType="minLength[5]" /></td></tr>
 
         </table>
     </form>

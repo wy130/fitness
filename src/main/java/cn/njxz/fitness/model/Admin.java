@@ -12,17 +12,9 @@ public class Admin implements Serializable {
 
     private String aPwd;
 
-    private String aSex;
-
-    private Integer aAge;
-
     private String aPhone;
 
-    private String aEmail;
-
     private String aType;
-
-    private Date regdate;
 
     private String aStatus;
 

@@ -26,6 +26,7 @@ public interface AdminMapper {
     Admin findAdminByName(String username);
     //主页的admin的查找
     List<Admin> selectByName(Map params);
+
     List<Admin> countselectByName(@Param("username") String username);
     int countAdmin();
     List<Admin> selectAll();

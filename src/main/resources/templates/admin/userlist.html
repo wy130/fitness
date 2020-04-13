@@ -34,21 +34,21 @@
         }];
         //定义冻结列
         var frozenColumns = [ [ {
-            field : 'uid',
+            field : 'UId',
             checkbox : true,
             rowspan : 3
         }, {
-            field : 'username',
+            field : 'UName',
             title : '名称',
             width : 120,
             rowspan : 3
         } ,{
-            field : 'mobile',
+            field : 'UPhone',
             title : '手机号',
             width : 120,
             rowspan : 3
         },{
-            field : 'email',
+            field : 'UEmail',
             title : '邮箱',
             width : 120,
             rowspan : 3
@@ -58,7 +58,7 @@
 
         // 定义标题栏
         var columns = [ [ {
-            field : 'password',
+            field : 'UPwd',
             title : '密码',
             width : 120,
             rowspan : 3,
@@ -78,7 +78,7 @@
                 toolbar : toolbar,
                 pagination:true,
                 url : "http://localhost:8090/fitness/user/getAllUser",
-                idField : 'uid',
+                idField : 'UId',
                 pageSize:5,
                 frozenColumns : frozenColumns,
                 columns : columns,
@@ -118,7 +118,7 @@
             var item = $('#grid').datagrid('getSelected');
             console.info(item);
 //		alert(item.id);
-            var index=item.uid;
+            var index=item.UId;
             location.href="http://localhost:8090/fitness/user/toEditUser?id="+index+"";
         }
 
@@ -127,7 +127,7 @@
             var ids = [];
             var items = $('#grid').datagrid('getSelections');
             for(var i=0; i<items.length; i++){
-                ids.push(items[i].uid);
+                ids.push(items[i].UId);
             }
             console.info(ids.join(","));
 //		alert(ids);

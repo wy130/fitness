@@ -33,15 +33,15 @@
         <table class="table-edit"  width="95%" align="center">
             <tr class="title"><td colspan="4">基本信息</td>
                 <td>
-                    <input type="hidden" th:value="${user.uid}"  name="uid" >
+                    <input type="hidden" th:value="${user.uId}"  name="uId" >
                 </td>
             </tr>
 
-            <tr><td>用户名:</td><td><input type="text" name="username"  th:value="${user.username}"  id="username" class="easyui-validatebox" required="true" /></td>
-                <td>密码:</td><td><input type="password" name="password" th:value="${user.password}" id="password" class="easyui-validatebox" required="true" validType="minLength[5]" /></td>
+            <tr><td>用户名:</td><td><input type="text" name="uName"  th:value="${user.uName}"  id="username" class="easyui-validatebox" required="true" /></td>
+                <td>密码:</td><td><input type="password" name="uPwd" th:value="${user.uPwd}" id="password" class="easyui-validatebox" required="true" validType="minLength[5]" /></td>
             </tr><tr>
-            <td>邮箱:</td><td><input type="text" name="email"  th:value="${user.email}"  class="easyui-validatebox" required="true"/></td>
-            <td>电话:</td><td><input type="text" name="mobile" th:value="${user.mobile}"  class="easyui-validatebox" required="true"/></td>
+            <td>邮箱:</td><td><input type="text" name="uEmail"  th:value="${user.uEmail}"  class="easyui-validatebox" required="true"/></td>
+            <td>电话:</td><td><input type="text" name="uPhone" th:value="${user.uPhone}"  class="easyui-validatebox" required="true"/></td>
         </tr>
         </table>
     </form>

@@ -42,19 +42,19 @@ public class AdminController {
 
     /**
      * 验证后台用户是否存在。若成功登录则显示后台主页  admin/index.html。若失败，则访问error.html
-     * @param username
-     * @param password
+     * @param aName
+     * @param aPwd
      * @param request
      * @return
      */
     @RequestMapping(value = "/doLogin")
-    public String doLogin(@Param("username") String username, @Param("password") String password, HttpServletRequest request) {
+    public String doLogin(@Param("aName") String aName, @Param("aPwd") String aPwd, HttpServletRequest request) {
 
-        Admin admin = adminService.login(username, password);
-        if (admin != null) {
+        Admin admin = adminService.findAdminByName(aName);
+        if(admin != null && admin.getAPwd().equals(aPwd)){
             HttpSession session = request.getSession();
             session.setAttribute("admin", admin);
-            session.setAttribute("username", username);
+            session.setAttribute("username", aName);
             return "templates/admin/index";  /*后台主页展示*/
         } else {
             request.setAttribute("error", "用户名或密码错误");
@@ -144,7 +144,7 @@ public class AdminController {
     ) throws IOException {
         System.out.println("进入查询");
         request.setCharacterEncoding("utf-8");
-        Map<String, Object> params = new HashMap<String, Object>();
+        Map<String, Object> params = new HashMap<String, Object>(3);
         params.put("pageSize", rows);
         params.put("pageNum", (page - 1) * rows);
         params.put("username", "");
@@ -155,8 +155,6 @@ public class AdminController {
         String clist = JSONArray.fromObject(findAll).toString();
         result.put("rows", clist);
         result.put("total", total);
-        //
-        //System.out.println(clist);
         response.setCharacterEncoding("utf-8");
         response.setContentType("text/html; charset=UTF-8");
         PrintWriter out = response.getWriter();
@@ -166,7 +164,6 @@ public class AdminController {
     /*后台管理员列表增加*/
     @RequestMapping("/toAdd")
     public String toAdd() {
-
         return "templates/admin/admininfo";
     }
 
@@ -179,7 +176,6 @@ public class AdminController {
      */
     @RequestMapping("/addAdmin")
     public String addAdmin(Admin admin, HttpServletRequest request) {
-
         if (admin != null) {
             adminService.add(admin);
             return "templates/admin/adminlist"; //添加成功后转到admin列表

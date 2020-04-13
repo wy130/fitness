@@ -63,7 +63,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public int countUser() {
-		return 0;
+		return userMapper.userCount();
 	}
 	@Override
 	public List<User> selectByName(Map params) {

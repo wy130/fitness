@@ -16,7 +16,7 @@ public class CourseController {
     @Autowired
     private CourseService courseService;
 
-    @RequestMapping("/findAllCourse")
+    @RequestMapping("/findAllCourseByPage")
     public String findAllCourse(Model model) {
         List<Course> courseList = courseService.findAllCourse();
         if (courseList.isEmpty()) {
@@ -38,4 +38,6 @@ public class CourseController {
             return "templates/index";
         }
     }
+
+
 }

@@ -20,8 +20,8 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    public List<Course> findCourseByKey() {
-        return null;
+    public List<Course> findCourseByKey(String cName) {
+        return courseMapper.findCourseByKey(cName);
     }
 
     @Override

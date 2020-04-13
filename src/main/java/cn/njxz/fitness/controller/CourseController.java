@@ -2,11 +2,16 @@ package cn.njxz.fitness.controller;
 
 import cn.njxz.fitness.model.Course;
 import cn.njxz.fitness.service.CourseService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
@@ -16,14 +21,16 @@ public class CourseController {
     @Autowired
     private CourseService courseService;
 
-    @RequestMapping("/findAllCourseByPage")
-    public String findAllCourse(Model model) {
+    @RequestMapping("/findAllCourse")
+    public String findAllCourse(Model model,@RequestParam(defaultValue="1")Integer pageNum) {
+        PageHelper.startPage(pageNum, 1);
+
         List<Course> courseList = courseService.findAllCourse();
         if (courseList.isEmpty()) {
             return "templates/index";
         } else {
-
-            model.addAttribute("courses", courseList);
+            PageInfo<Course> pageInfo = new PageInfo<>(courseList);
+            model.addAttribute("pageInfo", pageInfo);
             return "templates/course";
         }
     }
@@ -38,6 +45,18 @@ public class CourseController {
             return "templates/index";
         }
     }
-
-
+   @RequestMapping("/findCourseByName")
+   public String findCourseByName(Model model, HttpServletRequest request, @RequestParam(defaultValue="1")Integer pageNum){
+       PageHelper.startPage(pageNum, 1);
+       String cName = request.getParameter("cName");
+       List<Course> courseList = courseService.findCourseByKey(cName);
+       if (courseList.isEmpty()) {
+           return "templates/index";
+       } else {
+           PageInfo<Course> pageInfo = new PageInfo<>(courseList);
+           model.addAttribute("cName", cName);
+           model.addAttribute("pageInfo", pageInfo);
+           return "templates/querycourse";
+       }
+   }
 }

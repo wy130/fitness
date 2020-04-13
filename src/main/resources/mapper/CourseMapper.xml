@@ -154,4 +154,10 @@
     <include refid="Base_Column_List" />
     from course
   </select>
+  <select id="findCourseByKey"  resultMap="BaseResultMap" parameterType="java.lang.String">
+    select
+    <include refid="Base_Column_List" />
+    from course
+    where C_NAME  LIKE "%"#{cName,jdbcType=VARCHAR}"%"
+  </select>
 </mapper>

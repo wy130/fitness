@@ -15,7 +15,7 @@ public interface CourseService {
      * 根据关键字模糊查询课程
      * @return
      */
-    public List<Course> findCourseByKey();
+    public List<Course> findCourseByKey(String cName);
 
     public Course findCourseById(int id);
     /**

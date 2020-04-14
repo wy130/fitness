@@ -4,13 +4,17 @@ import cn.njxz.fitness.model.Course;
 import cn.njxz.fitness.service.CourseService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.google.gson.JsonObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
@@ -59,4 +63,18 @@ public class CourseController {
            return "templates/querycourse";
        }
    }
+
+    @GetMapping("/findCourseByTrainFilter")
+    @ResponseBody
+    public List<Course> findCourseByTrainFilter( Integer partvalue,
+                                                Integer difficultyvalue,
+                                                          Integer timevalue) {
+        List<Course> courseList = courseService.findCourseByTrainFilter(difficultyvalue,partvalue,timevalue);
+        if (courseList.isEmpty()) {
+            return null;
+        } else {
+            return courseList;
+        }
+    }
+
 }

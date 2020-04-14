@@ -33,6 +33,8 @@ public interface CourseService {
 
     public boolean updateCourse(Course course);
 
+    List<Course> findCourseByTrainFilter(Integer cClId,Integer cCoId,Integer cCtId);
+
 
 
 

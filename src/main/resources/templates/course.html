@@ -13,6 +13,8 @@
     <meta name="generator" content=""  data-variable=",cn,10001,,10001,M1156015" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
     <link rel='stylesheet' href='http://localhost:8090/fitness/static/css/index.css' th:href="@{http://localhost:8090/fitness/static/css/index.css}">
+    <!-- 导入jquery核心类库 -->
+    <script type="text/javascript" src="http://localhost:8090/fitness/static/js/admin/jquery-1.8.3.js"></script>
 </head>
 
 <body class=" nav-header">
@@ -255,6 +257,41 @@
                                 >
                             </ol>
                         </div>
+                    </div>
+                </div>
+                <div>
+                    <h3>全部课程</h3>
+                    <div onchange="trainFilter()">
+                        <label>部位</label>
+                        <select id="train-part">
+                            <option th:value="1">不限部位</option>
+                            <option th:value="2">默认</option>
+                            <option th:value="3">胸部</option>
+                            <option th:value="4">肩部</option>
+                            <option th:value="5">背部</option>
+                            <option th:value="6">臀部</option>
+                            <option th:value="7">腿部</option>
+                            <option th:value="8">腹部</option>
+                            <option th:value="9">手臂</option>
+                        </select>
+                        <label>难度</label>
+                        <select id="train-difficulty">
+                            <option th:value="6">不限难度</option>
+                            <option th:value="1">H1</option>
+                            <option th:value="2">H2</option>
+                            <option th:value="3">H3</option>
+                            <option th:value="4">H4</option>
+                            <option th:value="5">H5</option>
+                        </select>
+                        <label>周期</label>
+                        <select id="train-time">
+                            <option th:value="6">不限难度</option>
+                            <option th:value="1">H1</option>
+                            <option th:value="2">H2</option>
+                            <option th:value="3">H3</option>
+                            <option th:value="4">H4</option>
+                            <option th:value="5">H5</option>
+                        </select>
                     </div>
                 </div>
                 <div class="met-product">
@@ -545,6 +582,34 @@
     </i>
 </button>
 <script src="http://localhost:8090/fitness/static/js/index.js"></script>
+<script type="text/javascript">
+    function trainFilter(){
+            var partvalue=document.getElementById("train-part").value;
+            var difficultyvalue=document.getElementById("train-difficulty").value;
+            var timevalue = document.getElementById("train-timr").value;//这边就可以获得选取的option的value值
+            $.ajax({
+                url: "http://localhost:8090/fitness/course/findCourseByTrainFilter",
+                type: "get",
+                data:{"partvalue":partvalue,"difficultyvalue":difficultyvalue},
+                //dataType: "json",
+                success: function(result) {
+                    console.log(result);
+                    //取出具体的数据,console网页调试中展示
+                    var attr = result;
+                    //循环变量数据,index表示的是角标,item表示的是attr数组
+                    $.each(attr, function(index, item) {
+                        var tr;
+                        tr = '<td>' + item.pid + '</td>' + '<td>' + item.pname + '</td>' + '<td>' + item.choice + '</td>'
+                            + '<td ><button  id="' + item.pid + '"  value="' + item.pid + '" onclick="RemoveProductFromCart(' + item.pid + ')">从购物车中移除</button></td>';
+                        //取出数据拼接标签
+                        $("#table01").append('<tr>' + tr + '</tr>');//将创建好的td挂载到table下
+                    })
+                }
+
+            });
+
+    }
+</script>
 </body>
 
 </html>

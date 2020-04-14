@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.njxz.fitness.mapper.RecordMapper">
+  <resultMap id="BaseResultMap" type="cn.njxz.fitness.model.Record">
+    <id column="R_ID" jdbcType="INTEGER" property="rId" />
+    <result column="R_C_ID" jdbcType="INTEGER" property="rCId" />
+    <result column="R_TIME" jdbcType="TIMESTAMP" property="rTime" />
+    <result column="R_U_ID" jdbcType="INTEGER" property="rUId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    R_ID, R_C_ID, R_TIME, R_U_ID
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from record
+    where R_ID = #{rId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from record
+    where R_ID = #{rId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.njxz.fitness.model.Record">
+    insert into record (R_ID, R_C_ID, R_TIME, 
+      R_U_ID)
+    values (#{rId,jdbcType=INTEGER}, #{rCId,jdbcType=INTEGER}, #{rTime,jdbcType=TIMESTAMP}, 
+      #{rUId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.njxz.fitness.model.Record">
+    insert into record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="rId != null">
+        R_ID,
+      </if>
+      <if test="rCId != null">
+        R_C_ID,
+      </if>
+      <if test="rTime != null">
+        R_TIME,
+      </if>
+      <if test="rUId != null">
+        R_U_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="rId != null">
+        #{rId,jdbcType=INTEGER},
+      </if>
+      <if test="rCId != null">
+        #{rCId,jdbcType=INTEGER},
+      </if>
+      <if test="rTime != null">
+        #{rTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rUId != null">
+        #{rUId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.njxz.fitness.model.Record">
+    update record
+    <set>
+      <if test="rCId != null">
+        R_C_ID = #{rCId,jdbcType=INTEGER},
+      </if>
+      <if test="rTime != null">
+        R_TIME = #{rTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rUId != null">
+        R_U_ID = #{rUId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where R_ID = #{rId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.njxz.fitness.model.Record">
+    update record
+    set R_C_ID = #{rCId,jdbcType=INTEGER},
+      R_TIME = #{rTime,jdbcType=TIMESTAMP},
+      R_U_ID = #{rUId,jdbcType=INTEGER}
+    where R_ID = #{rId,jdbcType=INTEGER}
+  </update>
+</mapper>

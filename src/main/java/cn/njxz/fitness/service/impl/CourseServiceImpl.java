@@ -44,4 +44,9 @@ public class CourseServiceImpl implements CourseService {
     public boolean updateCourse(Course course) {
         return false;
     }
+
+    @Override
+    public List<Course> findCourseByTrainFilter(Integer cClId, Integer cCoId, Integer cCtId) {
+        return courseMapper.findCourseByTrainFilter(cClId,cCoId,cCtId);
+    }
 }

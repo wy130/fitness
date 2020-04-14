@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.njxz.fitness.mapper.EmployeeMapper">
+  <resultMap id="BaseResultMap" type="cn.njxz.fitness.model.Employee">
+    <id column="E_ID" jdbcType="INTEGER" property="eId" />
+    <result column="SAL" jdbcType="VARCHAR" property="sal" />
+    <result column="DESCRIBE" jdbcType="VARCHAR" property="describe" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    E_ID, SAL, DESCRIBE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from employee
+    where E_ID = #{eId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from employee
+    where E_ID = #{eId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.njxz.fitness.model.Employee">
+    insert into employee (E_ID, SAL, DESCRIBE
+      )
+    values (#{eId,jdbcType=INTEGER}, #{sal,jdbcType=VARCHAR}, #{describe,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.njxz.fitness.model.Employee">
+    insert into employee
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="eId != null">
+        E_ID,
+      </if>
+      <if test="sal != null">
+        SAL,
+      </if>
+      <if test="describe != null">
+        DESCRIBE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="eId != null">
+        #{eId,jdbcType=INTEGER},
+      </if>
+      <if test="sal != null">
+        #{sal,jdbcType=VARCHAR},
+      </if>
+      <if test="describe != null">
+        #{describe,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.njxz.fitness.model.Employee">
+    update employee
+    <set>
+      <if test="sal != null">
+        SAL = #{sal,jdbcType=VARCHAR},
+      </if>
+      <if test="describe != null">
+        DESCRIBE = #{describe,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where E_ID = #{eId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.njxz.fitness.model.Employee">
+    update employee
+    set SAL = #{sal,jdbcType=VARCHAR},
+      DESCRIBE = #{describe,jdbcType=VARCHAR}
+    where E_ID = #{eId,jdbcType=INTEGER}
+  </update>
+</mapper>

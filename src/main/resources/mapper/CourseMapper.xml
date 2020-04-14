@@ -160,4 +160,21 @@
     from course
     where C_NAME  LIKE "%"#{cName,jdbcType=VARCHAR}"%"
   </select>
+
+  <select id="findCourseByTrainFilter" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select
+    <include refid="Base_Column_List" />
+    from course
+    <where>
+    <if test="cClId != null">
+    C_CL_ID = #{cClId,jdbcType=INTEGER}
+    </if>
+    <if test="cCoId != null">
+    and C_CO_ID = #{cCoId,jdbcType=INTEGER}
+    </if>
+    <if test="cCtId != null">
+    and C_CT_ID = #{cCtId,jdbcType=INTEGER}
+    </if>
+    </where>
+  </select>
 </mapper>

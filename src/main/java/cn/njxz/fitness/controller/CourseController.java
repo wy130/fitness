@@ -70,6 +70,7 @@ public class CourseController {
                                                 Integer difficultyvalue,
                                                           Integer timevalue) {
         List<Course> courseList = courseService.findCourseByTrainFilter(difficultyvalue,partvalue,timevalue);
+
         if (courseList.isEmpty()) {
             return null;
         } else {

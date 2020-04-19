@@ -177,4 +177,27 @@
     </if>
     </where>
   </select>
+  <select id="selectByName" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List"/>
+    from course
+    where 1=1
+    <if test="username!=null"> and C_NAME LIKE "%"#{username}"%"</if>
+    limit #{pageNum},#{pageSize}
+  </select>
+  <select id="countCourse"  resultType="java.lang.Integer" >
+    select count(*) from course
+  </select>
+  <select id="countselectByName" parameterType="cn.njxz.fitness.model.Course"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from course
+    where 1=1
+    <if test="username!=null"> and C_NAME LIKE "%"#{username}"%"</if>
+  </select>
+  <select id="selectAll" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from course
+  </select>
 </mapper>

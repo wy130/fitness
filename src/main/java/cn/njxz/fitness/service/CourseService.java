@@ -1,8 +1,10 @@
 package cn.njxz.fitness.service;
 
+import cn.njxz.fitness.model.Admin;
 import cn.njxz.fitness.model.Course;
 
 import java.util.List;
+import java.util.Map;
 
 public interface CourseService {
     /**
@@ -23,19 +25,36 @@ public interface CourseService {
      * @param course
      * @return
      */
-    public boolean addCourse(Course course);
+    public int addCourse(Course course);
 
     /**
      * 删除课程
      * @return
      */
-    public boolean deleteCourse(int cid);
+    public int deleteCourse(int cid);
 
-    public boolean updateCourse(Course course);
+    public int updateCourse(Course course);
 
     List<Course> findCourseByTrainFilter(Integer cClId,Integer cCoId,Integer cCtId);
 
+    List<Course> findAll();
 
+
+    /**
+     * 分页查询课程
+     * @param params
+     * @return
+     */
+    List<Course> selectByName(Map params);
+
+
+    List<Course> countselectByName(String username);
+
+    /**
+     * 查询管理员的数量
+     * @return
+     */
+    int countCourse();
 
 
 

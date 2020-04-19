@@ -119,7 +119,7 @@
   <select id="findAdminByName"  parameterType="cn.njxz.fitness.model.Admin" resultMap="BaseResultMap" >
     select  *  from admin where A_NAME = #{username}
   </select>
-  <select id="selectByName" resultMap="BaseResultMap" parameterType="cn.njxz.fitness.model.Admin">
+  <select id="selectByName" resultMap="BaseResultMap" >
     select
     <include refid="Base_Column_List"/>
     from admin

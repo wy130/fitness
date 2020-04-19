@@ -79,4 +79,38 @@
       R_U_ID = #{rUId,jdbcType=INTEGER}
     where R_ID = #{rId,jdbcType=INTEGER}
   </update>
+  <select id="findAllRecord"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from record
+  </select>
+  <select id="findRecordByKey"  resultMap="BaseResultMap" parameterType="java.lang.String">
+    select
+    <include refid="Base_Column_List" />
+    from record
+    where R_ID  LIKE "%"#{cName,jdbcType=INTEGER}"%"
+  </select>
+  <select id="selectByName" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List"/>
+    from record
+    where 1=1
+    <if test="username!=null"> and R_ID LIKE "%"#{username}"%"</if>
+    limit #{pageNum},#{pageSize}
+  </select>
+  <select id="countRecord"  resultType="java.lang.Integer" >
+    select count(*) from record
+  </select>
+  <select id="countselectByName" parameterType="cn.njxz.fitness.model.Record" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from record
+    where 1=1
+    <if test="username!=null"> and R_ID LIKE "%"#{username}"%"</if>
+  </select>
+  <select id="selectAll" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from record
+  </select>
 </mapper>

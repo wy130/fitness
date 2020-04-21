@@ -45,7 +45,7 @@
                                     <a id="met-weixins">
                                         <i class="fa fa-weixin" data-plugin="webuiPopover" data-trigger="hover"
                                         data-animation="pop" data-placement='bottom' data-width='130' data-padding='0'
-                                        data-content="<img src='picture/weixin.jpg' alt='健身达人小助手' style='width: 120px;display:block;margin:auto;'>">
+                                        data-content="<img src='http://localhost:8090/fitness/static/picture/weixin.jpg' alt='健身达人小助手' style='width: 120px;display:block;margin:auto;'>">
                                         </i>
                                     </a>
                                     <hr>
@@ -101,10 +101,10 @@
                     </button>
                     <a href="#"​ class="navbar-brand navbar-logo vertical-align" title="健身达人小助手(自适应手机端)">
                         <h1 class='hide'>
-                            响应式塑身瑜伽馆瘦身培训类网站织梦模板(自适应手机端)
+                            健身达人小助手(自适应手机端)
                         </h1>
                         <div class="vertical-align-middle">
-                            <img src="picture/logo.png" alt="健身达人小助手(自适应手机端)" title="健身达人小助手(自适应手机端)"
+                            <img src="http://localhost:8090/fitness/static/picture/logo.png" alt="健身达人小助手(自适应手机端)" title="健身达人小助手(自适应手机端)"
                             />
                         </div>
                     </a>
@@ -118,13 +118,13 @@
                             </i>
                         </div>
                         <div class="search-form">
-                            <form name="formsearch" action="/plus/search.php">
-                                <input type="hidden" name="kwtype" value="0" />
-                                <input type="text" placeholder="请输入搜索关键词！" name="q" value="">
-                                <button type="submit" class="wb-search">
-                                </button>
-                            </form>
-                        </div>
+                    <form name="formsearch" action="http://localhost:8090/fitness/course/findCourseByName">
+                        <!--<input type="hidden" name="kwtype" value="0" />-->
+                        <input type="text"  placeholder="请输入搜索关键词！" name="cName" >
+                        <button type="submit" class="wb-search">
+                        </button>
+                    </form>
+                </div>
                     </div>
                     <ul class="nav navbar-nav navbar-right navlist">
                         <li class="margin-right-20">
@@ -134,34 +134,34 @@
                         </li>
                         <li class="dropdown margin-right-20">
                             <a data-toggle="dropdown" data-hover="dropdown" aria-expanded="false"
-                            class="dropdown-toggle link  active" href="about.html">
+                            class="dropdown-toggle link  active" href="http://localhost:8090/fitness/templates/about.html">
                                 关于我们
                                 <span class="caret">
                                 </span>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-right bullet">
                                 <li>
-                                    <a href="about1.html" class="">
+                                    <a href="http://localhost:8090/fitness/templates/about1.html" class="">
                                         塑形美体
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="about2.html" class="">
+                                    <a href="http://localhost:8090/fitness/templates/about2.html" class="">
                                         经典纯粹
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="about3.html" class="">
+                                    <a href="http://localhost:8090/fitness/templates/about3.html" class="">
                                         理疗修复
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="about4.html" class="">
+                                    <a href="http://localhost:8090/fitness/templates/about4.html" class="">
                                         情绪释放
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="about5.html" class="">
+                                    <a href="http://localhost:8090/fitness/templates/about5.html" class="">
                                         职业老师
                                     </a>
                                 </li>
@@ -169,20 +169,20 @@
                         </li>
                         <li class="dropdown margin-right-20">
                             <a data-toggle="dropdown" data-hover="dropdown" aria-expanded="false"
-                            class="dropdown-toggle link  " href="news.html">
+                            class="dropdown-toggle link  " href="http://localhost:8090/fitness/templates/news.html">
                                 新闻资讯
                                 <span class="caret">
                                 </span>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-right bullet">
                                 <li>
-                                    <a href="news1.html" class="">
+                                    <a href="http://localhost:8090/fitness/templates/news1.html" class="">
                                         会馆活动
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="news2.html" class="">
-                                        瑜伽资讯
+                                    <a href="http://localhost:8090/fitness/templates/news2.html" class="">
+                                        健身资讯
                                     </a>
                                 </li>
                                 <li>
@@ -193,35 +193,35 @@
                             </ul>
                         </li>
                         <li class="dropdown margin-right-20">
-                            <a class="link  " href="course.html">
-                                瑜伽课程
+                            <a class="link  " href="http://localhost:8090/fitness/course/findAllCourse">
+                                健身课程
                             </a>
                             <ul style="display:none">
                             </ul>
                         </li>
                         <li class="dropdown margin-right-20">
-                            <a class="link  " href="team.html">
+                            <a class="link  " href="http://localhost:8090/fitness/templates/team.html">
                                 教练团队
                             </a>
                             <ul style="display:none">
                             </ul>
                         </li>
                         <li class="dropdown margin-right-20">
-                            <a class="link  " href="huanjing.html">
+                            <a class="link  " href="http://localhost:8090/fitness/templates/huanjing.html">
                                 会馆环境
                             </a>
                             <ul style="display:none">
                             </ul>
                         </li>
                         <li class="dropdown margin-right-20">
-                            <a class="link  " href="contact.html">
+                            <a class="link  " href="http://localhost:8090/fitness/templates/contact.html">
                                 联系我们
                             </a>
                             <ul style="display:none">
                             </ul>
                         </li>
                         <li class="dropdown margin-right-20">
-                            <a class="link  " href="message.html">
+                            <a class="link  " href="http://localhost:8090/fitness/templates/message.html">
                                 在线留言
                             </a>
                             <ul style="display:none">
@@ -233,7 +233,7 @@
         </nav>
         <div class="met-banner banner-ny-h" data-height='' style=''>
             <div class="slick-slide">
-                <img class="cover-image" src="picture/1510649531.jpg" sizes="(max-width: 767px) 767px" alt="关于我们">
+                <img class="cover-image" src="http://localhost:8090/fitness/static/picture/1510649531.jpg" sizes="(max-width: 767px) 767px" alt="关于我们">
             </div>
         </div>
         <section class="met-content animsition">
@@ -258,27 +258,27 @@
                         </div>
                         <div class="met-editor lazyload clearfix">
                             <div>
-                                &nbsp;塑身瑜伽馆于2002年成立，隶属世界瑜伽健身中心。15年来，&ldquo;先进、专业、卓越&rdquo;是我们不变的追求。在获得&ldquo;业界领头羊&rdquo;专业认可的同时，更是深受广大学生的信任与欢迎。
+                                &nbsp;塑身健身馆于2002年成立，隶属世界健身健身中心。15年来，&ldquo;先进、专业、卓越&rdquo;是我们不变的追求。在获得&ldquo;业界领头羊&rdquo;专业认可的同时，更是深受广大学生的信任与欢迎。
                                 <p>
-                                    塑身瑜伽馆，作为中国首家引进国际瑜伽课程的健身中心。自2007年开始，就开设了瑜伽教练培训的课程，至今瑜伽派别丰富实用，已经为中国瑜伽市场培育了近万名优秀的瑜伽教练。让众多学员通过培训，经历了全新的蜕变，成为了瑜伽界的精英。
+                                    塑身健身馆，作为中国首家引进国际健身课程的健身中心。自2007年开始，就开设了健身教练培训的课程，至今健身派别丰富实用，已经为中国健身市场培育了近万名优秀的健身教练。让众多学员通过培训，经历了全新的蜕变，成为了健身界的精英。
                                 </p>
                                 <p>
-                                    <img alt="" src="picture/1-1g12p94454x9.jpg" />
+                                    <img alt="" src="http://localhost:8090/fitness/static/picture/1-1g12p94454x9.jpg" />
                                 </p>
                                 <p>
-                                    2012年，在校长的带领下，我们在北京故宫完成了中国首个大规模瑜伽静修中心的建设。这里不仅拥有国际水准的师资力量、前沿创新的教学理念与各具特色的课程培训，更有着自然优雅的教学环境和环保舒适的养生食宿。被前来修行习练的广大师生，称作&ldquo;瑜伽爱好者习练的天堂&rdquo;，&ldquo;修身养性的世外桃源&rdquo;。
+                                    2012年，在校长的带领下，我们在北京故宫完成了中国首个大规模健身静修中心的建设。这里不仅拥有国际水准的师资力量、前沿创新的教学理念与各具特色的课程培训，更有着自然优雅的教学环境和环保舒适的养生食宿。被前来修行习练的广大师生，称作&ldquo;健身爱好者习练的天堂&rdquo;，&ldquo;修身养性的世外桃源&rdquo;。
                                 </p>
                                 <p>
-                                    练习瑜伽是通过练身体来养心，提高专注力，定力、获得健康，愉悦的身心。
+                                    练习健身是通过练身体来养心，提高专注力，定力、获得健康，愉悦的身心。
                                 </p>
                                 <p>
-                                    那么，在塑身瑜伽馆，您可以体验到老师的高度重视，对您体位的精确调整，以及您所需要的个性化指导。还可以感受到来自塑身瑜伽馆大家庭，无微不至的关怀与训练中油然而生的凝聚力和自豪感。
+                                    那么，在塑身健身馆，您可以体验到老师的高度重视，对您体位的精确调整，以及您所需要的个性化指导。还可以感受到来自塑身健身馆大家庭，无微不至的关怀与训练中油然而生的凝聚力和自豪感。
                                 </p>
                                 <p>
-                                    <img alt="" src="picture/1-1g12p94502a9.jpg" />
+                                    <img alt="" src="http://localhost:8090/fitness/static/picture/1-1g12p94502a9.jpg" />
                                 </p>
                                 <p>
-                                    塑身瑜伽馆，作为瑜伽教学的风向标，我们坚持专业、坚持品质、更坚持支持学生。我们珍惜与大家的缘分，与大家一起走向更善，更美。
+                                    塑身健身馆，作为健身教学的风向标，我们坚持专业、坚持品质、更坚持支持学生。我们珍惜与大家的缘分，与大家一起走向更善，更美。
                                 </p>
                             </div>
                         </div>
@@ -292,7 +292,7 @@
                                 <li>
                                     <a href="#"​ title="高级教练 - 林嘉敏">
                                         <span>
-                                            <img src="picture/1-1g1251519210-l.jpg" alt="高级教练 - 林嘉敏">
+                                            <img src="http://localhost:8090/fitness/static/picture/1-1g1251519210-l.jpg" alt="高级教练 - 林嘉敏">
                                         </span>
                                         <h6>
                                             高级教练 - 林嘉敏
@@ -302,7 +302,7 @@
                                 <li>
                                     <a href="#"​ title="高级教练 - 关琳">
                                         <span>
-                                            <img src="picture/1-1g125151h20-l.jpg" alt="高级教练 - 关琳">
+                                            <img src="http://localhost:8090/fitness/static/picture/1-1g125151h20-l.jpg" alt="高级教练 - 关琳">
                                         </span>
                                         <h6>
                                             高级教练 - 关琳
@@ -312,7 +312,7 @@
                                 <li>
                                     <a href="#"​ title="总教练 - 李美玲">
                                         <span>
-                                            <img src="picture/1-1g1251511180-l.jpg" alt="总教练 - 李美玲">
+                                            <img src="http://localhost:8090/fitness/static/picture/1-1g1251511180-l.jpg" alt="总教练 - 李美玲">
                                         </span>
                                         <h6>
                                             总教练 - 李美玲
@@ -328,36 +328,36 @@
                             <ul>
                                 <li>
                                     <h6>
-                                        <a href="#"​ title="练瑜伽为什么要选择瑜伽馆，而非健身房？">
-                                            练瑜伽为什么要选择瑜伽馆，而非健身房？
+                                        <a href="#"​ title="练健身为什么要选择健身馆，而非健身房？">
+                                            练健身为什么要选择健身馆，而非健身房？
                                         </a>
                                     </h6>
                                 </li>
                                 <li>
                                     <h6>
-                                        <a href="#"​ title="2017北京 首届中国瑜伽康复经营发展大会">
-                                            2017北京 首届中国瑜伽康复经营发展大会
+                                        <a href="#"​ title="2017北京 首届中国健身康复经营发展大会">
+                                            2017北京 首届中国健身康复经营发展大会
                                         </a>
                                     </h6>
                                 </li>
                                 <li>
                                     <h6>
-                                        <a href="#"​ title="练习瑜伽时，我们的膝盖为什么总是“很受伤”">
-                                            练习瑜伽时，我们的膝盖为什么总是“很受伤”
+                                        <a href="#"​ title="练习健身时，我们的膝盖为什么总是“很受伤”">
+                                            练习健身时，我们的膝盖为什么总是“很受伤”
                                         </a>
                                     </h6>
                                 </li>
                                 <li>
                                     <h6>
-                                        <a href="#"​ title="2017全民健身运动报告怎么看瑜伽市场">
-                                            2017全民健身运动报告怎么看瑜伽市场
+                                        <a href="#"​ title="2017全民健身运动报告怎么看健身市场">
+                                            2017全民健身运动报告怎么看健身市场
                                         </a>
                                     </h6>
                                 </li>
                                 <li>
                                     <h6>
-                                        <a href="#"​ title="发力瑜伽市场，将在5000家店内开设瑜伽裤专卖区">
-                                            发力瑜伽市场，将在5000家店内开设瑜伽裤专卖区
+                                        <a href="#"​ title="发力健身市场，将在5000家店内开设健身裤专卖区">
+                                            发力健身市场，将在5000家店内开设健身裤专卖区
                                         </a>
                                     </h6>
                                 </li>
@@ -417,8 +417,8 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="#"​ title="瑜伽资讯">
-                                    瑜伽资讯
+                                <a href="#"​ title="健身资讯">
+                                    健身资讯
                                 </a>
                             </li>
                             <li>
@@ -436,8 +436,8 @@
                         </h4>
                         <ul>
                             <li>
-                                <a href="#"​ title="瑜伽课程">
-                                    瑜伽课程
+                                <a href="#"​ title="健身课程">
+                                    健身课程
                                 </a>
                             </li>
                             <li>
@@ -493,7 +493,7 @@
                                 <a id="met-weixin">
                                     <i class="fa fa-weixin" data-plugin="webuiPopover" data-trigger="hover"
                                     data-animation="pop" data-placement='top' data-width='160' data-padding='0'
-                                    data-content="<img src='picture/weixin.jpg' alt='微信' style='width: 150px;height:150px;display:block;margin:auto;'>">
+                                    data-content="<img src='http://localhost:8090/fitness/static/picture/weixin.jpg' alt='微信' style='width: 150px;height:150px;display:block;margin:auto;'>">
                                     </i>
                                 </a>
                                 <a href="#"​ rel="nofollow">
@@ -512,14 +512,14 @@
                     <li>
                         友情链接 :
                     </li>
-                    <li><a href='http://www.17sucai.com/' target='_blank'>网站模板</a></li>
+                    <li><a href='https://www.hiyd.com/' target='_blank'>Hi运动</a></li>
                 </ol>
             </div>
         </div>
         <footer>
             <div class="container text-center">
                 <div class="powered_by_metinfo">
-                    Copyright &copy; 2019 某某瑜伽健身馆 版权所有
+                    Copyright &copy; 2019 某某健身健身馆 版权所有
                 </div>
             </div>
         </footer>
@@ -527,7 +527,7 @@
             <i class="icon wb-chevron-up" aria-hidden="true">
             </i>
         </button>
-        <script src="js/index.js"></script>
+        <script src="http://localhost:8090/fitness/static/js/index.js" th:href="@{http://localhost:8090/fitness/static/js/index.js}">
     </body>
 
 </html>

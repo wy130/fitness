@@ -35,7 +35,7 @@ public class CourseController {
 
     @RequestMapping("/findAllCourse")
     public String findAllCourse(Model model,@RequestParam(defaultValue="1")Integer pageNum) {
-        PageHelper.startPage(pageNum, 1);
+        PageHelper.startPage(pageNum, 2);
 
         List<Course> courseList = courseService.findAllCourse();
         if (courseList.isEmpty()) {
@@ -207,8 +207,6 @@ public class CourseController {
     @RequestMapping("/delCourse")
     public String delCourse(String ids, HttpServletRequest request,
                            HttpServletResponse response) {
-        /**/
-        System.out.println("进入删除");
         if (ids.length() == 1) {
             System.out.println("-------" + ids);
             if (courseService.deleteCourse(Integer.parseInt(ids)) > 0) {

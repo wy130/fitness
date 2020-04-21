@@ -416,11 +416,10 @@ public class UserController {
 
 		if (user != null) {
 			//把购物车号赋值一下==用户的id
-
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:ss aa");//最后的aa表示上午或下午 HH表示24小时
 			String d = sdf.format(new Date());
-
-
+			String pwdByMd5 = getMD5(user.getUPwd());
+			user.setUPwd(pwdByMd5);
 			userService.add(user);
 			return "templates/admin/userlist"; //添加成功后转到user列表
 		} else {
@@ -453,6 +452,8 @@ public class UserController {
 	@RequestMapping("/updateUser")
 	public String updateUser(User user, HttpServletRequest request) {
 		System.out.println("进入更新。。。。。");
+		String pwdByMd5 = getMD5(user.getUPwd());
+		user.setUPwd(pwdByMd5);
 		if (userService.update(user) > 0) {
 			return "templates/admin/userlist";
 		} else {

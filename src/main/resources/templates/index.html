@@ -84,14 +84,12 @@
                                     在线留言
                                 </a>
                                 <hr />
-                                <a href="http://localhost:8090/fitness/templates/user/login.html" title="登录">
-                                    登录
+                                <span id="userName"></span>
+                                <a id="login">
                                 </a>
                                 <hr/>
-                                <span>|</span>
                                 <hr/>
-                                <a href="http://localhost:8090/fitness/templates/user/register.html" title="注册">
-                                    注册
+                                <a id="register">
                                 </a>
                                 <hr />
                             </span>
@@ -140,7 +138,7 @@
                     </div>
                     <ul class="nav navbar-nav navbar-right navlist">
                         <li class="margin-right-20">
-                            <a href="index.html" title="首页" class="link active">
+                            <a href="http://localhost:8090/fitness/templates/index.html" title="首页" class="link active">
                                 首页
                             </a>
                         </li>
@@ -378,8 +376,8 @@
                             </h2>
                         </div>
                         <div class="about-box">
-                            塑身健身馆于2002年成立，隶属世界健身健身中心。15年来，先进、专业、卓越是我们不变的追求。在获得业界领头羊专业认可的同时，更是深受广大学生的信任与欢迎。
-                            塑身健身馆，作为中国首家引进国际健身课程的健身中心。自2007年开始，就开设了健身教练培训的课程，至今健身派别丰富实用，已经为中国健身市场培育了近万名优秀的健身教练。让众多学员通过培训，经历了
+                            健身馆于2002年成立，隶属世界健身中心。15年来，先进、专业、卓越是我们不变的追求。在获得业界领头羊专业认可的同时，更是深受广大学生的信任与欢迎。
+                            健身馆，作为中国首家引进国际健身课程的健身中心。自2007年开始，就开设了健身教练培训的课程，至今健身派别丰富实用，已经为中国健身市场培育了近万名优秀的健身教练。让众多学员通过培训，经历了
                             ...
                         </div>
                         <div class="about-link">
@@ -729,7 +727,7 @@
                                             </a>
                                         </h4>
                                         <p>
-                                            2017抚仙湖国际健身文化节以静心舒畅、瑜到澄江为主题，普及推广国家体育总局、全国健身运动推广委员会2017年最新审定的《健身健身108式体位标准》，服务全民健身，倡导健康文明...
+                                            2017抚仙湖国际健身文化节以静心舒畅、瑜到澄江为主题，普及推广国家体育总局、全国健身运动推广委员会2017年最新审定的《健身108式体位标准》，服务全民健身，倡导健康文明...
                                         </p>
                                         <b>
                                             <i>
@@ -1180,5 +1178,25 @@
         <script src="http://localhost:8090/fitness/static/js/index.js" th:href="@{http://localhost:8090/fitness/static/js/index.js}">
         </script>
     </body>
+    <script type="text/javascript" defer="true">
+        $(document).ready(function(){
+            $.ajax({
+                url: 'http://localhost:8090/fitness/user/toIndex',
+                type: 'get',//请求方式
+                success: function(result) {
+                    console.log(result);
+                    if(null != result && "" != result){
+                        document.getElementById("userName").innerHTML
+                            = '<font >欢迎，'+result.uname+'</font>';
+                    }else{
+                        document.getElementById("login").innerHTML
+                            = "<a href='http://localhost:8090/fitness/templates/user/login.html'>登录</a>";
+                        document.getElementById("register").innerHTML
+                            = "<a href='http://localhost:8090/fitness/templates/user/register.html'>注册</a>";
+                    }
+                }
+            });
 
+        });
+    </script>
 </html>

@@ -24,7 +24,7 @@
         <!--验证-->
         function checkname(){
             var uName = document.getElementById("username").value;
-            var uNameMode=/^[a-zA-Z0-9_-]{3,7}$/;
+            var uNameMode=/^[a-zA-Z0-9_-]{3,10}$/;;
             if (uNameMode.test(uName)) {
                 $.ajax({
                     type: 'post',//请求方式
@@ -154,7 +154,8 @@
                         <p style=" height: 20px; width: 140px; font-size: 12px;" id="tishi"></p>
                     </div>
                     <div class="input_outer">
-                        <input type="text"  style="height: 46px; width: 90px;" class="text"  id="imagecode" name="checkcode" onkeyup="checkimagecode()"/>
+                        <input type="text" placeholder="短信验证码" style="height: 46px; width: 90px;" class="text"
+                               id="imagecode" name="checkcode" onkeyup="checkimagecode()"/>
                         <button type="button"  style="height: 20px; width: 140px; font-size: 12px;"
                                 onclick="getPhoneVerification()">
                             获取短信验证码</button>

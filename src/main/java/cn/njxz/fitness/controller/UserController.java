@@ -28,6 +28,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -66,16 +67,21 @@ public class UserController {
 	}
 
 	/**
-	 * 前往首页去登录
+	 * 前往首页
 	 *
 	 * @param request
 	 *
 	 * @return
 	 */
-	@RequestMapping("/toLogin")
-	public String toLogin(HttpServletRequest request) {
-
-		return "templates/index";
+	@GetMapping("/toIndex")
+	@ResponseBody
+	public User toIndex(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		User user = (User) session.getAttribute("user");
+		if (user != null) {
+			return user;
+		}
+		return null;
 	}
 
 	/**

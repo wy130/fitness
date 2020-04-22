@@ -74,9 +74,18 @@ public class CourseController {
 
     @GetMapping("/findCourseByTrainFilter")
     @ResponseBody
-    public List<Course> findCourseByTrainFilter( Integer partvalue,
-                                                Integer difficultyvalue,
-                                                          Integer timevalue) {
+    public List<Course> findCourseByTrainFilter(  Integer partvalue,
+                                                  Integer difficultyvalue,
+                                                   Integer timevalue) {
+        if(partvalue.equals(Integer.valueOf(9))){
+            partvalue=null;
+        }
+        if(difficultyvalue.equals(Integer.valueOf(6))){
+            difficultyvalue=null;
+        }
+        if(timevalue.equals(Integer.valueOf(6))){
+            timevalue=null;
+        }
         List<Course> courseList = courseService.findCourseByTrainFilter(difficultyvalue,partvalue,timevalue);
 
         if (courseList.isEmpty()) {

@@ -172,7 +172,7 @@
             </div>
             <ul class="nav navbar-nav navbar-right navlist">
                 <li class="margin-right-20">
-                    <a href="index.html" title="首页" class="link">
+                    <a href="http://localhost:8090/fitness/templates/index.html" title="首页" class="link">
                         首页
                     </a>
                 </li>
@@ -303,8 +303,17 @@
                 <div>
                     <h3>全部课程</h3>
                     <div >
+                        <label>难度</label>
+                        <select id="train-difficulty" onchange="trainFilter()">
+                            <option th:value="6">不限难度</option>
+                            <option th:value="1">H1</option>
+                            <option th:value="2">H2</option>
+                            <option th:value="3">H3</option>
+                            <option th:value="4">H4</option>
+                            <option th:value="5">H5</option>
+                        </select>
                         <label>部位</label>
-                        <select id="train-part" onchange="trainFilter()">
+                        <select id="train-part" onchange="trainFilter()" >
                             <option th:value="9">不限部位</option>
                             <option th:value="1">默认</option>
                             <option th:value="2">胸部</option>
@@ -315,17 +324,8 @@
                             <option th:value="7">腹部</option>
                             <option th:value="8">手臂</option>
                         </select>
-                        <label>难度</label>
-                        <select id="train-difficulty" onchange="trainFilter()">
-                            <option th:value="6">不限难度</option>
-                            <option th:value="1">H1</option>
-                            <option th:value="2">H2</option>
-                            <option th:value="3">H3</option>
-                            <option th:value="4">H4</option>
-                            <option th:value="5">H5</option>
-                        </select>
                         <label>周期</label>
-                        <select id="train-time" onchange="trainFilter()">
+                        <select id="train-time" onchange="trainFilter()" >
                             <option th:value="6">不限天数</option>
                             <option th:value="1">1天</option>
                             <option th:value="2">2天</option>

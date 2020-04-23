@@ -48,7 +48,7 @@
                     }
                 });
             }else {
-                document.getElementById("nameErr").innerHTML="<font color='red'>&times;用户名需3到7位（字母，数字，下划线，减号）!</font>";
+                document.getElementById("nameErr").innerHTML="<font color='red'>&times;用户名需3到10位（字母，数字，下划线，减号）!</font>";
             }}
         function checkpwd(){
             var uPassword = document.getElementById("uPwd").value;
@@ -127,7 +127,7 @@
         <div id="large-header" class="large-header">
             <canvas id="demo-canvas"></canvas>
             <div class="logo_box">
-                <h3>Fitness. Sign in</h3>
+                <h3>Fitness. Sign up</h3>
                 <form  id="f" action="http://localhost:8090/fitness/user/toregister" name="f" method="post" onsubmit="return checkForm(this);">
                     <div class="input_outer">
                         <span class="u_user"></span>

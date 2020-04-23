@@ -36,11 +36,11 @@ public class CourseController {
     @RequestMapping("/findAllCourse")
     public String findAllCourse(Model model,@RequestParam(defaultValue="1")Integer pageNum) {
         PageHelper.startPage(pageNum, 2);
-
         List<Course> courseList = courseService.findAllCourse();
         if (courseList.isEmpty()) {
             return "templates/index";
         } else {
+            //pageInfo为pageHelper封装好的分页类，其中分页好的course数据在pageInfo的list字段中
             PageInfo<Course> pageInfo = new PageInfo<>(courseList);
             model.addAttribute("pageInfo", pageInfo);
             return "templates/course";

@@ -218,7 +218,6 @@ public class UserController {
 				out = response.getWriter();
 				out.print("<script>alert('注册成功，请登录!');</script>");
 				out.flush();
-
 				return "templates/user/login";
 			}
 		}
@@ -227,24 +226,26 @@ public class UserController {
 
 	@PostMapping("/getPhoneVerification")
 	@ResponseBody
-	public String getPhoneVerification(String memberphone) throws ClientException {
+	public String getPhoneVerification(String memberPhone) throws ClientException {
 		//  判断是否填写手机号码
-		if (memberphone == null) {
+		if (memberPhone == null) {
 			//  未填写手机号码，返回失败提示
 			return "{\"msg\":\"no\"}";
 		}
 		//  判断用户填写的手机号码是否合法
-		if (!memberphone.matches("^1(([358]\\d)|66|76|77|99)\\d{8}$")) {
+		if (!memberPhone.matches("^1(([358]\\d)|66|76|77|99)\\d{8}$")) {
 			//  手机号码不合法，返回失败提示
 			return "{\"msg\":\"no\"}";
 		}
-		String validateCodeInRedis = stringRedisTemplate.opsForValue().get(memberphone);
+		//从redis中取出key为手机号的value，若存在，即五分钟失效时间未过
+		String validateCodeInRedis = stringRedisTemplate.opsForValue().get(memberPhone);
 		if (validateCodeInRedis != null) {
-			String validateCode = AliyunSmsUtil.sendSms(memberphone, validateCodeInRedis);
+			//将现有的验证码validateCodeInRedis重新发送给用户
+			String validateCode = AliyunSmsUtil.sendSms(memberPhone, validateCodeInRedis);
 			return "{\"msg\":\"ok\"}";
 		}
 		//    将用的短信验证码保存到Redis中
-		String validateCode = AliyunSmsUtil.sendSms(memberphone, null);
+		String validateCode = AliyunSmsUtil.sendSms(memberPhone, null);
 		//  判断获取短信验证码是否出现异常
 		if (validateCode.length() != 6) {
 			//  说明返回的不是验证码，而是异常信息
@@ -253,10 +254,9 @@ public class UserController {
 		//  将短信验证码保存到 Redis 中，有效期为5分钟
 		//  key  ： 手机号码
 		//  value： 验证码
-		stringRedisTemplate.opsForValue().set(memberphone, validateCode);
-		stringRedisTemplate.expire(memberphone, 300, TimeUnit.SECONDS);
+		stringRedisTemplate.opsForValue().set(memberPhone, validateCode);
+		stringRedisTemplate.expire(memberPhone, 300, TimeUnit.SECONDS);
 		return "{\"msg\":\"ok\"}";
-
 	}
 
 

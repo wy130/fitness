@@ -39,7 +39,7 @@
                         <div class="head-left-wrapper">
                             <div class="head-left-slide">
                                 <p>
-                                    欢迎光临健身馆，微信号：YUJIA 关注有好礼哦！
+                                    欢迎使用健身达人小助手， 关注有好礼哦！
                                 </p>
                                 <font>
                                     <hr>
@@ -83,6 +83,15 @@
                                     </i>
                                     在线留言
                                 </a>
+                                <hr />
+                                <span id="userName"></span>
+                                <a id="login">
+                                </a>
+                                <hr/>
+                                <hr/>
+                                <a id="register">
+                                </a>
+                                <hr />
                             </span>
                         </div>
                     </div>
@@ -216,7 +225,7 @@
                         </li>
                         <li class="dropdown margin-right-20">
                             <a class="link  " href="http://localhost:8090/fitness/templates/contact.html">
-                                联系我们
+                                个人中心
                             </a>
                             <ul style="display:none">
                             </ul>
@@ -417,8 +426,8 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="#"​ title="联系我们">
-                                    联系我们
+                                <a href="#"​ title="个人中心">
+                                    个人中心
                                 </a>
                             </li>
                         </ul>
@@ -493,7 +502,29 @@
             <i class="icon wb-chevron-up" aria-hidden="true">
             </i>
         </button>
-        <script src="http://localhost:8090/fitness/static/js/index.js" th:href="@{http://localhost:8090/fitness/static/js/index.js}">
+         <script src="http://localhost:8090/fitness/static/js/index.js" th:href="@{http://localhost:8090/fitness/static/js/index.js}"/>
+        </script>
     </body>
+    <script type="text/javascript" defer="true">
+        $(document).ready(function(){
+            $.ajax({
+                url: 'http://localhost:8090/fitness/user/toIndex',
+                type: 'get',//请求方式
+                success: function(result) {
+                    console.log(result);
+                    if(null != result && "" != result){
+                        document.getElementById("userName").innerHTML
+                            = '<font >欢迎，'+result.uname+'</font>';
+                    }else{
+                        document.getElementById("login").innerHTML
+                            = "<a href='http://localhost:8090/fitness/templates/user/login.html'>登录</a>";
+                        document.getElementById("register").innerHTML
+                            = "<a href='http://localhost:8090/fitness/templates/user/register.html'>注册</a>";
+                    }
+                }
+            });
+
+        });
+    </script>
 
 </html>

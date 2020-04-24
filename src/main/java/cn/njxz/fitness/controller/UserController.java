@@ -279,7 +279,7 @@ public class UserController {
 	}
 
 	/**
-	 * 主页中的业务，当用户没有登录的状态下，先登录在操作 contact 联系我们
+	 * 主页中的业务，当用户没有登录的状态下，先登录在操作 contact 个人中心
 	 *
 	 * @return 成衣
 	 */
@@ -300,7 +300,7 @@ public class UserController {
 	}
 
 	/*
-	 * 联系我们
+	 * 个人中心
 	 */
 	@RequestMapping("/contact")
 	public String contact(HttpServletRequest request) {
@@ -316,7 +316,7 @@ public class UserController {
 			return "/show/jsp/error2";
 		} else {
 			System.out.println("+++++++++++++++++++++buweikong+++++++++++++++++++++" + session.getAttribute("user"));
-			return "templates/contact"; //联系我们的页面
+			return "templates/contact"; //个人中心的页面
 		}
 	}
 

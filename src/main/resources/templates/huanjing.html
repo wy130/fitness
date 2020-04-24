@@ -1,237 +1,247 @@
 ﻿<!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-    
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>
-            会馆环境_健身达人小助手(自适应手机端)
-        </title>
-        <meta name="keywords" content="" />
-        <meta name="description" content="" />
         <meta name="renderer" content="webkit">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta name="generator" content=""  data-variable=",cn,10001,,10001,M1156015" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+        <title>
+            会馆环境_健身达人小助手(自适应手机端)
+        </title>
+        <meta name="keywords" content="健身达人小助手" />
+        <meta name="description" content="健身达人小助手" />
+        <meta name="author" content="js代码" />
+        <meta name="copyright" content="js代码" />
         <link rel='stylesheet' href='http://localhost:8090/fitness/static/css/index.css'>
     </head>
-    
-    <body class=" nav-header">
-        <!--[if lte IE 8]>
-            <div class="text-center padding-top-50 padding-bottom-50 bg-blue-grey-100">
-                <p class="browserupgrade font-size-18">
-                    你正在使用一个
-                    <strong>
-                        过时
-                    </strong>
-                    的浏览器。请
-                    <a href="#"​>
-                        升级您的浏览器
-                    </a>
-                    ，以提高您的体验。
-                </p>
-            </div>
-        <![endif]-->
 
-        <header class="">
-            <div class="head-box">
-                <div class="container">
-                    <div class="head-left">
-                        <div class="head-left-wrapper">
-                            <div class="head-left-slide">
-                                <p>
-                                    欢迎光临健身馆，微信号：YUJIA 关注有好礼哦！
-                                </p>
-                                <font>
-                                    <hr>
-                                    <a id="met-weixins">
-                                        <i class="fa fa-weixin" data-plugin="webuiPopover" data-trigger="hover"
-                                        data-animation="pop" data-placement='bottom' data-width='130' data-padding='0'
-                                        data-content="<img src='http://localhost:8090/fitness/static/picture/weixin.jpg' alt='健身达人小助手(自适应手机端)' style='width: 120px;display:block;margin:auto;'>">
-                                        </i>
-                                    </a>
-                                    <hr>
-                                    <a href="#"​
-                                    rel="nofollow">
-                                        <i class="fa fa-qq">
-                                        </i>
-                                    </a>
-                                    <hr>
-                                    <a href="#"​ rel="nofollow">
-                                        <i class="fa fa-weibo">
-                                        </i>
-                                    </a>
-                                </font>
-                            </div>
+    <body class=" nav-header">
+    <!--[if lte IE 8]>
+    <div class="text-center padding-top-50 padding-bottom-50 bg-blue-grey-100">
+        <p class="browserupgrade font-size-18">
+            你正在使用一个
+            <strong>
+                过时
+            </strong>
+            的浏览器。请
+            <a href="#">
+                升级您的浏览器
+            </a>
+            ，以提高您的体验。
+        </p>
+    </div>
+    <![endif]-->
+
+    <header class="">
+        <div class="head-box">
+            <div class="container">
+                <div class="head-left">
+                    <div class="head-left-wrapper">
+                        <div class="head-left-slide">
+                            <p>
+                                欢迎使用健身达人小助手 关注有好礼哦！
+                            </p>
+                            <font>
+                                <hr>
+                                <a id="met-weixins">
+                                    <i class="fa fa-weixin" data-plugin="webuiPopover" data-trigger="hover"
+                                       data-animation="pop" data-placement='bottom' data-width='130' data-padding='0'
+                                       data-content="<img src='http://localhost:8090/fitness/static/picture/weixin.jpg' alt='健身达人小助手(自适应手机端)' style='width: 120px;display:block;margin:auto;'>">
+                                    </i>
+                                </a>
+                                <hr>
+                                <a href="#"
+                                   rel="nofollow">
+                                    <i class="fa fa-qq">
+                                    </i>
+                                </a>
+                                <hr>
+                                <a href="#" rel="nofollow">
+                                    <i class="fa fa-weibo">
+                                    </i>
+                                </a>
+                            </font>
                         </div>
                     </div>
-                    <div class="head-right">
-                        <div class="head-other">
-                            <b>
-                                更多关注
-                                <i class="caret">
-                                </i>
-                            </b>
-                            <span>
+                </div>
+                <div class="head-right">
+                    <div class="head-other">
+                        <b>
+                            更多关注
+                            <i class="caret">
+                            </i>
+                        </b>
+                        <span>
                                 <a class="bookmark" data-alert="加入收藏失败，请使用Ctrl+D进行添加">
                                     <i class="fa fa-bookmark">
                                     </i>
                                     收藏本站
                                 </a>
                                 <hr />
-                                <a href="#"​ title="在线留言">
+                                <a href="#" title="在线留言">
                                     <i class="fa fa-book">
                                     </i>
                                     在线留言
                                 </a>
+                                <hr />
+                                <span id="userName"></span>
+                                <a id="login">
+                                </a>
+                                <hr/>
+                                <hr/>
+                                <a id="register">
+                                </a>
+                                <hr />
                             </span>
-                        </div>
                     </div>
                 </div>
             </div>
-        </header>
-        <nav class="navbar navbar-default met-nav " role="navigation">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle hamburger hamburger-close collapsed"
-                    data-target="#navbar-default-collapse" data-toggle="collapse">
+        </div>
+    </header>
+    <nav class="navbar navbar-default met-nav " role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle hamburger hamburger-close collapsed"
+                        data-target="#navbar-default-collapse" data-toggle="collapse">
                         <span class="sr-only">
                             Toggle navigation
                         </span>
-                        <span class="hamburger-bar">
+                    <span class="hamburger-bar">
                         </span>
-                    </button>
-                    <a href="#"​ class="navbar-brand navbar-logo vertical-align" title="健身达人小助手(自适应手机端)">
-                        <h1 class='hide'>
-                            健身达人小助手(自适应手机端)
-                        </h1>
-                        <div class="vertical-align-middle">
-                            <img src="http://localhost:8090/fitness/static/picture/logo.png" alt="健身达人小助手(自适应手机端)" title="健身达人小助手(自适应手机端)"
-                            />
-                        </div>
-                    </a>
-                    <h2 class='hide'>
-                    </h2>
-                </div>
-                <div class="collapse navbar-collapse navbar-collapse-toolbar" id="navbar-default-collapse">
-                    <div class="navbar-right search-box">
-                        <div class="search-button">
-                            <i class="wb-search">
-                            </i>
-                        </div>
-                        <div class="search-form">
-                    <form name="formsearch" action="http://localhost:8090/fitness/course/findCourseByName">
-                        <!--<input type="hidden" name="kwtype" value="0" />-->
-                        <input type="text"  placeholder="请输入搜索关键词！" name="cName" >
-                        <button type="submit" class="wb-search">
-                        </button>
-                    </form>
-                </div>
+                </button>
+                <a href="#" class="navbar-brand navbar-logo vertical-align" title="健身达人小助手(自适应手机端)">
+                    <h1 class='hide'>
+                        健身达人小助手(自适应手机端)
+                    </h1>
+                    <div class="vertical-align-middle">
+                        <img src="http://localhost:8090/fitness/static/picture/logo.png" alt="健身达人小助手(自适应手机端)" title="健身达人小助手(自适应手机端)"
+                        />
                     </div>
-                    <ul class="nav navbar-nav navbar-right navlist">
-                        <li class="margin-right-20">
-                            <a href="http://localhost:8090/fitness/templates/index.html" title="首页" class="link ">
-                                首页
-                            </a>
-                        </li>
-                        <li class="dropdown margin-right-20">
-                            <a data-toggle="dropdown" data-hover="dropdown" aria-expanded="false"
-                            class="dropdown-toggle link  " href="http://localhost:8090/fitness/templates/about.html">
-                                关于我们
-                                <span class="caret">
-                                </span>
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-right bullet">
-                                <li>
-                                    <a href="http://localhost:8090/fitness/templates/about1.html" class="">
-                                        塑形美体
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="http://localhost:8090/fitness/templates/about2.html" class="">
-                                        经典纯粹
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="http://localhost:8090/fitness/templates/about3.html" class="">
-                                        理疗修复
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="http://localhost:8090/fitness/templates/about4.html" class="">
-                                        情绪释放
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="http://localhost:8090/fitness/templates/about5.html" class="">
-                                        职业老师
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="dropdown margin-right-20">
-                            <a data-toggle="dropdown" data-hover="dropdown" aria-expanded="false"
-                            class="dropdown-toggle link  " href="http://localhost:8090/fitness/templates/news.html">
-                                新闻资讯
-                                <span class="caret">
-                                </span>
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-right bullet">
-                                <li>
-                                    <a href="http://localhost:8090/fitness/templates/news1.html" class="">
-                                        会馆活动
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="http://localhost:8090/fitness/templates/news2.html" class="">
-                                        健身资讯
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="news3.html" class="">
-                                        常见问题
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="dropdown margin-right-20">
-                            <a class="link  " href="http://localhost:8090/fitness/course/findAllCourse">
-                                健身课程
-                            </a>
-                            <ul style="display:none">
-                            </ul>
-                        </li>
-                        <li class="dropdown margin-right-20">
-                            <a class="link  " href="http://localhost:8090/fitness/templates/team.html">
-                                教练团队
-                            </a>
-                            <ul style="display:none">
-                            </ul>
-                        </li>
-                        <li class="dropdown margin-right-20">
-                            <a class="link  active" href="http://localhost:8090/fitness/templates/huanjing.html">
-                                会馆环境
-                            </a>
-                            <ul style="display:none">
-                            </ul>
-                        </li>
-                        <li class="dropdown margin-right-20">
-                            <a class="link  " href="http://localhost:8090/fitness/templates/contact.html">
-                                联系我们
-                            </a>
-                            <ul style="display:none">
-                            </ul>
-                        </li>
-                        <li class="dropdown margin-right-20">
-                            <a class="link  " href="http://localhost:8090/fitness/templates/message.html">
-                                在线留言
-                            </a>
-                            <ul style="display:none">
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
+                </a>
+                <h2 class='hide'>
+                </h2>
             </div>
-        </nav>
+            <div class="collapse navbar-collapse navbar-collapse-toolbar" id="navbar-default-collapse">
+                <div class="navbar-right search-box">
+                    <div class="search-button">
+                        <i class="wb-search">
+                        </i>
+                    </div>
+                    <div class="search-form">
+                        <form name="formsearch" action="http://localhost:8090/fitness/course/findCourseByName">
+                            <!--<input type="hidden" name="kwtype" value="0" />-->
+                            <input type="text"  placeholder="请输入搜索关键词！" name="cName" >
+                            <button type="submit" class="wb-search">
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                <ul class="nav navbar-nav navbar-right navlist">
+                    <li class="margin-right-20">
+                        <a href="http://localhost:8090/fitness/templates/index.html" title="首页" class="link active">
+                            首页
+                        </a>
+                    </li>
+                    <li class="dropdown margin-right-20">
+                        <a data-toggle="dropdown" data-hover="dropdown" aria-expanded="false"
+                           class="dropdown-toggle link  " href="http://localhost:8090/fitness/templates/about.html">
+                            关于我们
+                            <span class="caret">
+                                </span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-right bullet">
+                            <li>
+                                <a href="http://localhost:8090/fitness/templates/about1.html" class="">
+                                    塑形美体
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://localhost:8090/fitness/templates/about2.html" class="">
+                                    经典纯粹
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://localhost:8090/fitness/templates/about3.html" class="">
+                                    理疗修复
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://localhost:8090/fitness/templates/about4.html" class="">
+                                    情绪释放
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://localhost:8090/fitness/templates/about5.html" class="">
+                                    职业老师
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown margin-right-20">
+                        <a data-toggle="dropdown" data-hover="dropdown" aria-expanded="false"
+                           class="dropdown-toggle link  " href="http://localhost:8090/fitness/templates/news.html">
+                            新闻资讯
+                            <span class="caret">
+                                </span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-right bullet">
+                            <li>
+                                <a href="http://localhost:8090/fitness/templates/news1.html" class="">
+                                    会馆活动
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://localhost:8090/fitness/templates/news2.html" class="">
+                                    健身资讯
+                                </a>
+                            </li>
+                            <li>
+                                <a href="news3.html" class="">
+                                    常见问题
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown margin-right-20">
+                        <a class="link  active" href="http://localhost:8090/fitness/course/findAllCourse">
+                            健身课程
+                        </a>
+                        <ul style="display:none">
+                        </ul>
+                    </li>
+                    <li class="dropdown margin-right-20">
+                        <a class="link  " href="http://localhost:8090/fitness/templates/team.html">
+                            教练团队
+                        </a>
+                        <ul style="display:none">
+                        </ul>
+                    </li>
+                    <li class="dropdown margin-right-20">
+                        <a class="link  " href="http://localhost:8090/fitness/templates/huanjing.html">
+                            会馆环境
+                        </a>
+                        <ul style="display:none">
+                        </ul>
+                    </li>
+                    <li class="dropdown margin-right-20">
+                        <a class="link  " href="http://localhost:8090/fitness/templates/contact.html">
+                            个人中心
+                        </a>
+                        <ul style="display:none">
+                        </ul>
+                    </li>
+                    <li class="dropdown margin-right-20">
+                        <a class="link  " href="http://localhost:8090/fitness/templates/message.html">
+                            在线留言
+                        </a>
+                        <ul style="display:none">
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
         <div class="met-banner banner-ny-h" data-height='' style=''>
             <div class="slick-slide">
                 <img class="cover-image" src="http://localhost:8090/fitness/static/picture/1510649531.jpg" sizes="(max-width: 767px) 767px" alt="会馆环境">
@@ -468,8 +478,8 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="#"​ title="联系我们">
-                                    联系我们
+                                <a href="#"​ title="个人中心">
+                                    个人中心
                                 </a>
                             </li>
                         </ul>
@@ -544,7 +554,29 @@
             <i class="icon wb-chevron-up" aria-hidden="true">
             </i>
         </button>
-        <script src="http://localhost:8090/fitness/static/js/index.js" th:href="@{http://localhost:8090/fitness/static/js/index.js}">
+        <script src="http://localhost:8090/fitness/static/js/index.js"
+                th:href="@{http://localhost:8090/fitness/static/js/index.js}">
+            </script>
     </body>
+    <script type="text/javascript" defer="true">
+        $(document).ready(function(){
+            $.ajax({
+                url: 'http://localhost:8090/fitness/user/toIndex',
+                type: 'get',//请求方式
+                success: function(result) {
+                    console.log(result);
+                    if(null != result && "" != result){
+                        document.getElementById("userName").innerHTML
+                            = '<font >欢迎，'+result.uname+'</font>';
+                    }else{
+                        document.getElementById("login").innerHTML
+                            = "<a href='http://localhost:8090/fitness/templates/user/login.html'>登录</a>";
+                        document.getElementById("register").innerHTML
+                            = "<a href='http://localhost:8090/fitness/templates/user/register.html'>注册</a>";
+                    }
+                }
+            });
 
+        });
+    </script>
 </html>

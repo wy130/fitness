@@ -4,7 +4,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>
-            联系我们_健身达人小助手(自适应手机端)
+            个人中心_健身达人小助手(自适应手机端)
         </title>
         <meta name="keywords" content="" />
         <meta name="description" content="" />
@@ -39,7 +39,7 @@
                         <div class="head-left-wrapper">
                             <div class="head-left-slide">
                                 <p>
-                                    欢迎光临健身馆，微信号：YUJIA 关注有好礼哦！
+                                    欢迎使用健身达人小助手， 关注有好礼哦！
                                 </p>
                                 <font>
                                     <hr>
@@ -83,6 +83,15 @@
                                     </i>
                                     在线留言
                                 </a>
+                                <hr />
+                                <span id="userName"></span>
+                                <a id="login">
+                                </a>
+                                <hr/>
+                                <hr/>
+                                <a id="register">
+                                </a>
+                                <hr />
                             </span>
                         </div>
                     </div>
@@ -129,7 +138,7 @@
                     </div>
                     <ul class="nav navbar-nav navbar-right navlist">
                         <li class="margin-right-20">
-                            <a href="http://localhost:8090/fitness/templates/index.html" title="首页" class="link">
+                            <a href="http://localhost:8090/fitness/templates/index.html" title="首页" class="link ">
                                 首页
                             </a>
                         </li>
@@ -215,10 +224,23 @@
                             </ul>
                         </li>
                         <li class="dropdown margin-right-20">
-                            <a class="link active" href="http://localhost:8090/fitness/templates/contact.html">
-                                联系我们
+                            <a data-toggle="dropdown" data-hover="dropdown" aria-expanded="false"
+                               class="dropdown-toggle link  " href="http://localhost:8090/fitness/templates/contact.html">
+                                个人中心
+                                <span class="caret">
+                                </span>
                             </a>
-                            <ul style="display:none">
+                            <ul class="dropdown-menu dropdown-menu-right bullet">
+                                <li>
+                                    <a href="http://localhost:8090/fitness/templates/contact.html" class="">
+                                        个人资料
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="http://localhost:8090/fitness/templates/record.html" class="">
+                                        预约记录
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                         <li class="dropdown margin-right-20">
@@ -234,7 +256,7 @@
         </nav>
         <div class="met-banner banner-ny-h" data-height='' style=''>
             <div class="slick-slide">
-                <img class="cover-image" src="http://localhost:8090/fitness/static/picture/1510649531.jpg" sizes="(max-width: 767px) 767px" alt="联系我们">
+                <img class="cover-image" src="http://localhost:8090/fitness/static/picture/1510649531.jpg" sizes="(max-width: 767px) 767px" alt="个人中心">
             </div>
         </div>
         <section class="met-content animsition">
@@ -250,7 +272,7 @@
                                         </a>
                                         >
                                         <a href='/a/lianxiwomen/'>
-                                            联系我们
+                                            个人中心
                                         </a>
                                         </li>
                                     </ol>
@@ -448,8 +470,8 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="#"​ title="联系我们">
-                                    联系我们
+                                <a href="#"​ title="个人中心">
+                                    个人中心
                                 </a>
                             </li>
                         </ul>
@@ -524,7 +546,29 @@
             <i class="icon wb-chevron-up" aria-hidden="true">
             </i>
         </button>
-        <script src="http://localhost:8090/fitness/static/js/index.js" th:href="@{http://localhost:8090/fitness/static/js/index.js}">
-    </body>
+        <script src="http://localhost:8090/fitness/static/js/index.js" th:href="@{http://localhost:8090/fitness/static/js/index.js}"/>
+        </script>
+        </body>
+        <script type="text/javascript" defer="true">
+            $(document).ready(function(){
+                $.ajax({
+                    url: 'http://localhost:8090/fitness/user/toIndex',
+                    type: 'get',//请求方式
+                    success: function(result) {
+                        console.log(result);
+                        if(null != result && "" != result){
+                            document.getElementById("userName").innerHTML
+                                = '<font >欢迎，'+result.uname+'</font>';
+                        }else{
+                            document.getElementById("login").innerHTML
+                                = "<a href='http://localhost:8090/fitness/templates/user/login.html'>登录</a>";
+                            document.getElementById("register").innerHTML
+                                = "<a href='http://localhost:8090/fitness/templates/user/register.html'>注册</a>";
+                        }
+                    }
+                });
+
+            });
+        </script>
 
 </html>

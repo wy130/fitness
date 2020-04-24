@@ -7,7 +7,7 @@
             高级教练 - 林嘉敏_健身达人小助手(自适应手机端)
         </title>
         <meta name="keywords" content="高级,教练,林嘉敏,8年,健身,修行,6年,培训,师," />
-        <meta name="description" content="8年健身修行，6年健身培训师 ASFA亚体协哈他健身教练培训师 ASFA亚体协空中健身教练培训师 ASFA亚体协流健身教练培训师 ASFA阿斯汤加健身培训师培训师 ASFA专业体适能教练 ASFA高级私人"
+        <meta name="description" content="8年健身修行，6年健身教练 ASFA亚体协哈他健身教练 ASFA亚体协空中健身教练 ASFA亚体协流健身教练 ASFA阿斯汤加健身教练 ASFA专业体适能教练 ASFA高级私人"
         />
         <meta name="renderer" content="webkit">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -40,7 +40,7 @@
                         <div class="head-left-wrapper">
                             <div class="head-left-slide">
                                 <p>
-                                    欢迎光临健身馆，微信号：YUJIA 关注有好礼哦！
+                                    欢迎使用健身达人小助手， 关注有好礼哦！
                                 </p>
                                 <font>
                                     <hr>
@@ -84,6 +84,15 @@
                                     </i>
                                     在线留言
                                 </a>
+                                <hr />
+                                <span id="userName"></span>
+                                <a id="login">
+                                </a>
+                                <hr/>
+                                <hr/>
+                                <a id="register">
+                                </a>
+                                <hr />
                             </span>
                         </div>
                     </div>
@@ -217,7 +226,7 @@
                         </li>
                         <li class="dropdown margin-right-20">
                             <a class="link  " href="http://localhost:8090/fitness/templates/contact.html">
-                                联系我们
+                                个人中心
                             </a>
                             <ul style="display:none">
                             </ul>
@@ -283,19 +292,19 @@
                                     />
                                 </p>
                                 <p>
-                                    8年健身修行，6年健身培训师
+                                    8年健身修行，6年健身教练
                                 </p>
                                 <p>
-                                    ASFA亚体协哈他健身教练培训师
+                                    ASFA亚体协哈他健身教练
                                 </p>
                                 <p>
-                                    ASFA亚体协空中健身教练培训师
+                                    ASFA亚体协空中健身教练
                                 </p>
                                 <p>
-                                    ASFA亚体协流健身教练培训师
+                                    ASFA亚体协流健身教练
                                 </p>
                                 <p>
-                                    ASFA阿斯汤加健身培训师培训师
+                                    ASFA阿斯汤加健身教练
                                 </p>
                                 <p>
                                     ASFA专业体适能教练
@@ -307,10 +316,10 @@
                                     ASFA精英私人教练
                                 </p>
                                 <p>
-                                    ASFA亚体协授权培训师
+                                    ASFA亚体协授权教练
                                 </p>
                                 <p>
-                                    三谷中国健身导师培训学院授权培训师
+                                    三谷中国健身导师培训学院授权教练
                                 </p>
                                 <p>&nbsp;
                                     
@@ -530,8 +539,8 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="#"​ title="联系我们">
-                                    联系我们
+                                <a href="#"​ title="个人中心">
+                                    个人中心
                                 </a>
                             </li>
                         </ul>
@@ -606,7 +615,29 @@
             <i class="icon wb-chevron-up" aria-hidden="true">
             </i>
         </button>
-        <script src="http://localhost:8090/fitness/static/js/index.js" th:href="@{http://localhost:8090/fitness/static/js/index.js}">
+         <script src="http://localhost:8090/fitness/static/js/index.js" th:href="@{http://localhost:8090/fitness/static/js/index.js}"/>
+        </script>
     </body>
+    <script type="text/javascript" defer="true">
+        $(document).ready(function(){
+            $.ajax({
+                url: 'http://localhost:8090/fitness/user/toIndex',
+                type: 'get',//请求方式
+                success: function(result) {
+                    console.log(result);
+                    if(null != result && "" != result){
+                        document.getElementById("userName").innerHTML
+                            = '<font >欢迎，'+result.uname+'</font>';
+                    }else{
+                        document.getElementById("login").innerHTML
+                            = "<a href='http://localhost:8090/fitness/templates/user/login.html'>登录</a>";
+                        document.getElementById("register").innerHTML
+                            = "<a href='http://localhost:8090/fitness/templates/user/register.html'>注册</a>";
+                    }
+                }
+            });
+
+        });
+    </script>
 
 </html>

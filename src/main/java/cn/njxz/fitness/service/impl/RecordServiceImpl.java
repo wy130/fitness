@@ -70,4 +70,14 @@ public class RecordServiceImpl implements IRecordService {
     public int countRecord() {
         return recordMapper.countRecord();
     }
+
+    @Override
+    public Record findRecordByUidAndCid(Integer uid, Integer cid) {
+        return recordMapper.findRecordByUidAndCid(uid,cid);
+    }
+
+    @Override
+    public List<Record> findRecordByUid(int uid) {
+        return recordMapper.findRecordByUid(uid);
+    }
 }

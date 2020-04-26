@@ -59,4 +59,8 @@ public interface IRecordService {
      * @return
      */
     int countRecord();
+
+    Record  findRecordByUidAndCid(Integer uid,Integer cid);
+
+    List<Record> findRecordByUid(int uid);
 }

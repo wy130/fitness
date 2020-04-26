@@ -1,7 +1,10 @@
 package cn.njxz.fitness.controller;
 
 import cn.njxz.fitness.model.Course;
+import cn.njxz.fitness.model.Record;
+import cn.njxz.fitness.model.User;
 import cn.njxz.fitness.service.CourseService;
+import cn.njxz.fitness.service.IRecordService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.google.gson.JsonObject;
@@ -19,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URLDecoder;
@@ -32,6 +36,8 @@ public class CourseController {
 
     @Autowired
     private CourseService courseService;
+    @Autowired
+    private IRecordService recordService;
 
     @RequestMapping("/findAllCourse")
     public String findAllCourse(Model model,@RequestParam(defaultValue="1")Integer pageNum) {
@@ -48,10 +54,20 @@ public class CourseController {
     }
 
     @RequestMapping("/findCourseById")
-    public String findCourseById(Model model, int cid) {
+    public String findCourseById(Model model, int cid,HttpServletRequest request) {
         Course course = courseService.findCourseById(cid);
         if (course != null) {
             model.addAttribute("course", course);
+            HttpSession session = request.getSession();
+            User user = (User) session.getAttribute("user");
+            if (user != null) {
+              Record record = recordService.findRecordByUidAndCid(user.getUId(),cid);
+              if(record!=null){
+                  model.addAttribute("flag", true);
+              }else{
+                  model.addAttribute("flag", false);
+              }
+            }
             return "templates/courseshow";
         } else {
             return "templates/index";

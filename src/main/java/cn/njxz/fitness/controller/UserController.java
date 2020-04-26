@@ -82,7 +82,7 @@ public class UserController {
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("user");
 		if (user != null) {
-			Map<String, Object> map = new HashMap<String, Object>(2);
+			Map<String, Object> map = new HashMap<String, Object>();
 			map.put("user", user);
 			UserInfo userInfo = userService.findUserInfoByUId(user.getUId());
 			if (userInfo != null) {
@@ -442,6 +442,7 @@ public class UserController {
 
 	@PostMapping("/updateUser")
 	public String updateUser(UserInfo userInfo,@RequestParam("wEmail") String wEmail, HttpServletRequest request) {
+		userInfo.setImage("");
         int updateResult = userService.updateUserInfo(userInfo);
 		if (updateResult>0){
 			return "templates/contact";

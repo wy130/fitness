@@ -28,4 +28,8 @@ public interface RecordMapper {
     List<Record> countselectByName(@Param("username") String username);
     int countRecord();
     List<Record> selectAll();
+
+    Record findRecordByUidAndCid(@Param("uid")Integer uid,@Param("cid")Integer cid);
+
+    List<Record> findRecordByUid(int uid);
 }

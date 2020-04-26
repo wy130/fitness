@@ -94,7 +94,7 @@
             $.ajax({
                 type: 'post',//请求方式
                 url: 'http://localhost:8090/fitness/user/getPhoneVerification',//请求的 url地址  建议使用绝对地址
-                data: 'memberphone=' + memberphoneinput,//请求携带的 参数
+                data: 'memberPhone=' + memberphoneinput,//请求携带的 参数
                 dataType:"json",//如果后台返回的数据是String改造的  这里需要指定返回类型  否则 result.msg取不到值
                 success: function (result) {//注意 success中 function的data 可以解析后台响应的数据
                     //success是回调函数  可以将 后台数据返回到 当前页面   接着 进行具体 操作

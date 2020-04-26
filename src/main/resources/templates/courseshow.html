@@ -277,6 +277,7 @@
                             </div>
                         </div>
                         <div class="met-showproduct-head">
+                            <span th:value="${course.cId}"  id="Cid"></span>
                             <h1 class='met-showproduct-title'>
                                <p th:text="${course.cName}"></p>
                             </h1>
@@ -321,21 +322,10 @@
                         <div class="met-shownews-footer">
                             <ul class="pager pager-round">
                                 <li class='previous'>
-                                    <a href='/a/yujiakecheng/17.html'>
-                                        上一篇
-                                        <span aria-hidden='true' class='hidden-xs'>
-                                            ：阿斯汤伽基础班(10天)
-                                        </span>
+                                    <a  id="reserve"  th:text="${flag}?'取消预约':'我要预约'" th:value="${flag}">
                                     </a>
                                 </li>
-                                <li class='next disabled'>
-                                    <a href='#'>
-                                        下一篇
-                                        <span aria-hidden='true' class='hidden-xs'>
-                                            ：没有了
-                                        </span>
-                                    </a>
-                                </li>
+                                <li></li>
                             </ul>
                         </div>
                     </div>
@@ -586,6 +576,7 @@
         <script src="http://localhost:8090/fitness/static/js/index.js" th:href="@{http://localhost:8090/fitness/static/js/index.js}"/>
            </script>
         </body>
+        <script type="text/javascript" src="http://localhost:8090/fitness/static/js/admin/jquery-2.1.1.min.js" th:src="@{http://localhost:8090/fitness/static/js/admin/jquery-2.1.1.min.js}" ></script>
         <script type="text/javascript" defer="true">
             $(document).ready(function(){
                 $.ajax({
@@ -608,5 +599,32 @@
                 });
 
             });
+        $(document).ready(function(){
+            $("#reserve").click(function () {
+                var cId=document.getElementById("Cid").value;
+                var flag=document.getElementById("reserve").value;
+                //alert(flag);
+                $.ajax({
+                    type: 'post',//请求方式
+                    url: 'http://localhost:8090/fitness/record/reserve',//请求的 url地址  建议使用绝对地址
+                    //设定请求参数类型
+                    data:{"cId":cId,"flag":flag},//请求携带的 参数
+                    dataType:"json",//如果后台返回的数据是String改造的  这里需要指定返回类型  否则 result.msg取不到值
+                    success: function (result) {//注意 success中 function的data 可以解析后台响应的数据
+                        //success是回调函数  可以将 后台数据返回到 当前页面   接着 进行具体 操作
+                        if("ok"==result.msg){
+                            alert("操作成功!");
+
+                        }else{
+                            alert("操作失败!");
+                        }
+                    },
+                    error: function () {//失败的回调函数   如果url地址不对  或者 后台有错   都会进入该方法 (可以不写 )
+                        console.log('通讯失败!');
+                    }
+                });
+            })
+
+        })
         </script>
 </html>

@@ -1,10 +1,620 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>
+        个人中心_健身达人小助手(自适应手机端)
+    </title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="generator" content=""  data-variable=",cn,10001,,10001,M1156015" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <link rel='stylesheet' href='http://localhost:8090/fitness/static/css/index.css'>
+</head>
+
+<body class=" nav-header">
+<!--[if lte IE 8]>
+<div class="text-center padding-top-50 padding-bottom-50 bg-blue-grey-100">
+    <p class="browserupgrade font-size-18">
+        你正在使用一个
+        <strong>
+            过时
+        </strong>
+        的浏览器。请
+        <a href="#"​>
+            升级您的浏览器
+        </a>
+        ，以提高您的体验。
+    </p>
+</div>
+<![endif]-->
+
+<header class="">
+    <div class="head-box">
+        <div class="container">
+            <div class="head-left">
+                <div class="head-left-wrapper">
+                    <div class="head-left-slide">
+                        <p>
+                            欢迎使用健身达人小助手， 关注有好礼哦！
+                        </p>
+                        <font>
+                            <hr>
+                            <a id="met-weixins">
+                                <i class="fa fa-weixin" data-plugin="webuiPopover" data-trigger="hover"
+                                   data-animation="pop" data-placement='bottom' data-width='130' data-padding='0'
+                                   data-content="<img src='http://localhost:8090/fitness/static/picture/weixin.jpg' alt='健身达人小助手(自适应手机端)' style='width: 120px;display:block;margin:auto;'>">
+                                </i>
+                            </a>
+                            <hr>
+                            <a href="#"
+                               rel="nofollow">
+                                <i class="fa fa-qq">
+                                </i>
+                            </a>
+                            <hr>
+                            <a href="#" rel="nofollow">
+                                <i class="fa fa-weibo">
+                                </i>
+                            </a>
+                        </font>
+                    </div>
+                </div>
+            </div>
+            <div class="head-right">
+                <div class="head-other">
+                    <b>
+                        更多关注
+                        <i class="caret">
+                        </i>
+                    </b>
+                    <span>
+                                <a class="bookmark" data-alert="加入收藏失败，请使用Ctrl+D进行添加">
+                                    <i class="fa fa-bookmark">
+                                    </i>
+                                    收藏本站
+                                </a>
+                                <hr />
+                                <a href="#"​ title="在线留言">
+                                    <i class="fa fa-book">
+                                    </i>
+                                    在线留言
+                                </a>
+                                <hr />
+                                <span id="userName"></span>
+                                <a id="login">
+                                </a>
+                                <hr/>
+                                <a id="register">
+                                </a>
+                                <hr />
+                                <a id="logout">
+                                </a>
+                                <hr />
+                            </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<nav class="navbar navbar-default met-nav " role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle hamburger hamburger-close collapsed"
+                    data-target="#navbar-default-collapse" data-toggle="collapse">
+                        <span class="sr-only">
+                            Toggle navigation
+                        </span>
+                <span class="hamburger-bar">
+                        </span>
+            </button>
+            <a href="#"​ class="navbar-brand navbar-logo vertical-align" title="健身达人小助手(自适应手机端)">
+                <h1 class='hide'>
+                    健身达人小助手(自适应手机端)
+                </h1>
+                <div class="vertical-align-middle">
+                    <img src="http://localhost:8090/fitness/static/picture/logo.png" alt="健身达人小助手(自适应手机端)" title="健身达人小助手(自适应手机端)"
+                    />
+                </div>
+            </a>
+            <h2 class='hide'>
+            </h2>
+        </div>
+        <div class="collapse navbar-collapse navbar-collapse-toolbar" id="navbar-default-collapse">
+            <div class="navbar-right search-box">
+                <div class="search-button">
+                    <i class="wb-search">
+                    </i>
+                </div>
+                <div class="search-form">
+                    <form name="formsearch" action="http://localhost:8090/fitness/course/findCourseByName">
+                        <!--<input type="hidden" name="kwtype" value="0" />-->
+                        <input type="text"  placeholder="请输入搜索关键词！" name="cName" >
+                        <button type="submit" class="wb-search">
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <ul class="nav navbar-nav navbar-right navlist">
+                <li class="margin-right-20">
+                    <a href="http://localhost:8090/fitness/templates/index.html" title="首页" class="link ">
+                        首页
+                    </a>
+                </li>
+                <li class="dropdown margin-right-20">
+                    <a data-toggle="dropdown" data-hover="dropdown" aria-expanded="false"
+                       class="dropdown-toggle link  " href="http://localhost:8090/fitness/templates/about.html">
+                        关于我们
+                        <span class="caret">
+                                </span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-right bullet">
+                        <li>
+                            <a href="http://localhost:8090/fitness/templates/about1.html" class="">
+                                塑形美体
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://localhost:8090/fitness/templates/about2.html" class="">
+                                经典纯粹
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://localhost:8090/fitness/templates/about3.html" class="">
+                                理疗修复
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://localhost:8090/fitness/templates/about4.html" class="">
+                                情绪释放
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://localhost:8090/fitness/templates/about5.html" class="">
+                                职业老师
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown margin-right-20">
+                    <a data-toggle="dropdown" data-hover="dropdown" aria-expanded="false"
+                       class="dropdown-toggle link  " href="http://localhost:8090/fitness/templates/news.html">
+                        新闻资讯
+                        <span class="caret">
+                                </span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-right bullet">
+                        <li>
+                            <a href="http://localhost:8090/fitness/templates/news1.html" class="">
+                                会馆活动
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://localhost:8090/fitness/templates/news2.html" class="">
+                                健身资讯
+                            </a>
+                        </li>
+                        <li>
+                            <a href="news3.html" class="">
+                                常见问题
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown margin-right-20">
+                    <a class="link  " href="http://localhost:8090/fitness/course/findAllCourse">
+                        健身课程
+                    </a>
+                    <ul style="display:none">
+                    </ul>
+                </li>
+                <li class="dropdown margin-right-20">
+                    <a class="link  " href="http://localhost:8090/fitness/templates/team.html">
+                        教练团队
+                    </a>
+                    <ul style="display:none">
+                    </ul>
+                </li>
+                <li class="dropdown margin-right-20">
+                    <a class="link  " href="http://localhost:8090/fitness/templates/huanjing.html">
+                        会馆环境
+                    </a>
+                    <ul style="display:none">
+                    </ul>
+                </li>
+                <li class="dropdown margin-right-20">
+                    <a data-toggle="dropdown" data-hover="dropdown" aria-expanded="false"
+                       class="dropdown-toggle link  " href="http://localhost:8090/fitness/templates/contact.html">
+                        个人中心
+                        <span class="caret">
+                                </span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-right bullet">
+                        <li>
+                            <a href="http://localhost:8090/fitness/templates/contact.html" class="">
+                                个人资料
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://localhost:8090/fitness/templates/record.html" class="">
+                                预约记录
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown margin-right-20">
+                    <a class="link  " href="http://localhost:8090/fitness/templates/message.html">
+                        在线留言
+                    </a>
+                    <ul style="display:none">
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="met-banner banner-ny-h" data-height='' style=''>
+    <div class="slick-slide">
+        <img class="cover-image" src="http://localhost:8090/fitness/static/picture/1510649531.jpg" sizes="(max-width: 767px) 767px" alt="个人中心">
+    </div>
+</div>
+<section class="met-content animsition">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9 met-cons">
+                <div class="met-position  pattern-show">
+                    <div class="container">
+                        <div class="row">
+                            <ol class="breadcrumb">
+                                <a href='/'>
+                                    主页
+                                </a>
+                                >
+                                <a href='/a/lianxiwomen/'>
+                                    个人中心
+                                </a>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                <div class="met-editor lazyload clearfix">
+                    <form id="form1" onsubmit="return updWorker()" action="http://localhost:8080/homemaking/worker/updWorker" class="form-horizontal" enctype="multipart/form-data" method="post">
+                        <div class="form-group">
+                            <label for="wId" class="col-sm-2 control-label">编号：</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="wId" name="wId" placeholder="编号" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">昵称：</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="wName" name="wName" placeholder="昵称">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">手机号:</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control date" width="50%" id="wPhone" name="wPhone" placeholder="手机号">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">服务地址：</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control date" width="50%" id="wAddress" name="wAddress" placeholder="服务地址">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">性别：</label>
+                            <div class="col-sm-6">
+                                <label><input type="radio" name="wSex" id="a" value="1">男</label>
+                                <label><input type="radio" name="wSex" id="b" value="0" checked>女</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">服务类型</label>
+                            <div class="col-sm-6">
+                                <select name="wWtType" required placeholder="服务类型" id="listService" class="form-control">
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">收费类型</label>
+                            <div class="col-sm-6">
+                                <select name="wCName" required placeholder="服务类型" id="listService2" class="form-control">
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">收费：</label>
+                            <div class="col-sm-6">
+                                <input type="number" name="wCharge" id="wCharge">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">头像：</label>
+                            <div class="col-sm-6">
+                                <input type="file" name="img" id="wPhoto">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="wIntroduce" class="col-sm-2 control-label">自我介绍</label>
+                            <div class="col-sm-6">
+                                <textarea class="form-control" rows="3" name="wIntroduce" id="wIntroduce" placeholder="自我介绍"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-default" style="background-color: #00bcd4" >修改</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-3 met-conx">
+                <div class="met-service">
+                    <h3>
+                        个人中心
+                    </h3>
+                    <ul>
+                        <li>
+                            <a href="#"​ >
+                                        <span>
+                                            <img src="http://localhost:8090/fitness/static/picture/1-1g1251511180-l.jpg" alt="总教练 - 李美玲">
+                                        </span>
+                                <span id="userInfo_userName"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#"​ title="个人记录修改">
+                                个人记录修改
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#"​ title="预约记录">
+                                预约记录
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="met-information">
+                    <h3>
+                        新闻资讯
+                    </h3>
+                    <ul>
+                        <li>
+                            <h6>
+                                <a href="#"​ title="练健身为什么要选择健身达人小助手？">
+                                    练健身为什么要选择健身达人小助手？
+                                </a>
+                            </h6>
+                        </li>
+                        <li>
+                            <h6>
+                                <a href="#"​ title="2017北京 首届中国健身康复经营发展大会">
+                                    2017北京 首届中国健身康复经营发展大会
+                                </a>
+                            </h6>
+                        </li>
+                        <li>
+                            <h6>
+                                <a href="#"​ title="练习健身时，我们的膝盖为什么总是“很受伤”">
+                                    练习健身时，我们的膝盖为什么总是“很受伤”
+                                </a>
+                            </h6>
+                        </li>
+                        <li>
+                            <h6>
+                                <a href="#"​ title="2017全民健身运动报告怎么看健身市场">
+                                    2017全民健身运动报告怎么看健身市场
+                                </a>
+                            </h6>
+                        </li>
+                        <li>
+                            <h6>
+                                <a href="#"​ title="发力健身市场，将在5000家店内开设健身裤专卖区">
+                                    发力健身市场，将在5000家店内开设健身裤专卖区
+                                </a>
+                            </h6>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="met-footnav">
+    <div class="container">
+        <div class="row mob-masonry">
+            <div class="col-md-2 col-sm-3 col-xs-6 list masonry-item">
+                <h4>
+                    <a href="#"​ title="关于我们">
+                        关于我们
+                    </a>
+                </h4>
+                <ul>
+                    <li>
+                        <a href="#"​ title="塑形美体">
+                            塑形美体
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#"​ title="经典纯粹">
+                            经典纯粹
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#"​ title="理疗修复">
+                            理疗修复
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#"​ title="情绪释放">
+                            情绪释放
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#"​ title="职业老师">
+                            职业老师
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-2 col-sm-3 col-xs-6 list masonry-item">
+                <h4>
+                    <a href="#"​ title="新闻资讯">
+                        新闻资讯
+                    </a>
+                </h4>
+                <ul>
+                    <li>
+                        <a href="#"​ title="会馆活动">
+                            会馆活动
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#"​ title="健身资讯">
+                            健身资讯
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#"​ title="常见问题">
+                            常见问题
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-2 col-sm-3 col-xs-6 list masonry-item">
+                <h4>
+                    <a>
+                        会馆信息
+                    </a>
+                </h4>
+                <ul>
+                    <li>
+                        <a href="#"​ title="健身课程">
+                            健身课程
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#"​ title="教练团队">
+                            教练团队
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#"​ title="会馆环境">
+                            会馆环境
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#"​ title="个人中心">
+                            个人中心
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-2 col-sm-3 col-xs-6 list masonry-item">
+                <h4>
+                    <a>
+                        更多关注
+                    </a>
+                </h4>
+                <ul>
+                    <li>
+                        <a href="#"​ title="在线留言">
+                            在线留言
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-4 col-ms-12 col-xs-12 info masonry-item">
+                <div class="info-phone">
+                    <b>
+                        服务热线
+                    </b>
+                    <em>
+                        <a>
+                            400-123-4567
+                        </a>
+                    </em>
+                    <p>
+                        客服服务时段：周一至周五，9:30 - 20:30，节假日休息
+                    </p>
+                    <span>
+                                <a href="#"​
+                                   rel="nofollow">
+                                    <i class="fa fa-qq">
+                                    </i>
+                                </a>
+                                <a id="met-weixin">
+                                    <i class="fa fa-weixin" data-plugin="webuiPopover" data-trigger="hover"
+                                       data-animation="pop" data-placement='top' data-width='160' data-padding='0'
+                                       data-content="<img src='http://localhost:8090/fitness/static/picture/weixin.jpg' alt='微信' style='width: 150px;height:150px;display:block;margin:auto;'>">
+                                    </i>
+                                </a>
+                                <a href="#"​ rel="nofollow">
+                                    <i class="fa fa-weibo">
+                                    </i>
+                                </a>
+                            </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="met-links text-center">
+    <div class="container">
+        <ol class="breadcrumb">
+            <li>
+                友情链接 :
+            </li>
+            <li><a href='https://www.hiyd.com/' target='_blank'>Hi运动</a></li>
+        </ol>
+    </div>
+</div>
+<footer>
+    <div class="container text-center">
+        <div class="powered_by_metinfo">
+            Copyright &copy; 2020 健身达人小助手 版权所有
+        </div>
+    </div>
+</footer>
+<button type="button" class="btn btn-icon btn-primary btn-squared met-scroll-top hide">
+    <i class="icon wb-chevron-up" aria-hidden="true">
+    </i>
+</button>
+<script src="http://localhost:8090/fitness/static/js/index.js" th:href="@{http://localhost:8090/fitness/static/js/index.js}"/>
+</script>
 </body>
+<script type="text/javascript" defer="true">
+    $(document).ready(function(){
+        $.ajax({
+            url: 'http://localhost:8090/fitness/user/toIndex',
+            type: 'get',//请求方式
+            success: function(result) {
+                console.log(result);
+                if(null != result && "" != result){
+                    document.getElementById("userName").innerHTML
+                        = '<font >欢迎，'+result.user.uname+'</font>';
+                    document.getElementById("logout").innerHTML
+                        = "<a href='http://localhost:8090/fitness/user/logout'>注销</a>";
+                    document.getElementById("logout").innerHTML
+                        = "<a href='http://localhost:8090/fitness/user/logout'>注销</a>";
+                    document.getElementById("userInfo_userName").innerHTML
+                        = '<font >'+result.uname+'</font>';
+                }else{
+                    alert("请您先登录！");
+                    window.location.href = "http://localhost:8090/fitness/templates/user/login.html";
+                }
+            }
+        });
+
+    });
+</script>
+
 </html>

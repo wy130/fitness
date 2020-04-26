@@ -87,8 +87,10 @@
                                 <a id="login">
                                 </a>
                                 <hr/>
-                                <hr/>
                                 <a id="register">
+                                </a>
+                                <hr />
+                                <a id="logout">
                                 </a>
                                 <hr />
                             </span>
@@ -223,12 +225,25 @@
                             </ul>
                         </li>
                         <li class="dropdown margin-right-20">
-                            <a class="link  " href="http://localhost:8090/fitness/templates/contact.html">
-                                个人中心
+                    <a data-toggle="dropdown" data-hover="dropdown" aria-expanded="false"
+                       class="dropdown-toggle link  " href="http://localhost:8090/fitness/templates/contact.html">
+                        个人中心
+                        <span class="caret">
+                                </span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-right bullet">
+                        <li>
+                            <a href="http://localhost:8090/fitness/templates/contact.html" class="">
+                                个人资料
                             </a>
-                            <ul style="display:none">
-                            </ul>
                         </li>
+                        <li>
+                            <a href="http://localhost:8090/fitness/templates/record.html" class="">
+                                预约记录
+                            </a>
+                        </li>
+                    </ul>
+                </li>
                         <li class="dropdown margin-right-20">
                             <a class="link  " href="http://localhost:8090/fitness/templates/message.html">
                                 在线留言
@@ -548,7 +563,9 @@
                     console.log(result);
                     if(null != result && "" != result){
                         document.getElementById("userName").innerHTML
-                            = '<font >欢迎，'+result.uname+'</font>';
+                        = '<font >欢迎，'+result.user.uname+'</font>';
+                    document.getElementById("logout").innerHTML
+                        = "<a href='http://localhost:8090/fitness/user/logout'>注销</a>";
                     }else{
                         document.getElementById("login").innerHTML
                             = "<a href='http://localhost:8090/fitness/templates/user/login.html'>登录</a>";

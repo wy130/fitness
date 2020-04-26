@@ -12,8 +12,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import cn.njxz.fitness.model.User;
+import cn.njxz.fitness.model.UserInfo;
 import cn.njxz.fitness.util.AliyunSmsUtil;
 import com.aliyuncs.exceptions.ClientException;
+import com.google.gson.JsonObject;
 import lombok.extern.slf4j.Slf4j;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -48,6 +50,7 @@ public class UserController {
 	@Autowired
 	private StringRedisTemplate stringRedisTemplate;
 
+
 	/**
 	 * md5加密方法
 	 *
@@ -75,11 +78,17 @@ public class UserController {
 	 */
 	@GetMapping("/toIndex")
 	@ResponseBody
-	public User toIndex(HttpServletRequest request) {
+	public Map toIndex(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("user");
 		if (user != null) {
-			return user;
+			Map<String, Object> map = new HashMap<String, Object>(2);
+			map.put("user", user);
+			UserInfo userInfo = userService.findUserInfoByUId(user.getUId());
+			if (userInfo != null) {
+				map.put("userinfo", userInfo);
+			}
+			return map;
 		}
 		return null;
 	}
@@ -267,14 +276,11 @@ public class UserController {
 		response.setCharacterEncoding("UTF-8");
 		response.setHeader("Content-type", "text/html;charset=UTF-8");
 		PrintWriter out = null;
-
 		request.getSession().removeAttribute("user");
-
 		out = response.getWriter();
 		out.print("<script>alert('帐号已安全退出!');</script>");
-		out.flush();                      //window.location.href='" + "/show/login.jsp" + "';
-
-		modelAndView.setViewName("static/index");
+		out.flush();
+		modelAndView.setViewName("templates/user/login");
 		return modelAndView;
 	}
 
@@ -430,6 +436,16 @@ public class UserController {
 			return "templates/admin/userlist"; //添加成功后转到user列表
 		} else {
 			System.out.println("添加失败");
+			return null;
+		}
+	}
+
+	@PostMapping("/updateUser")
+	public String updateUser(UserInfo userInfo,@RequestParam("wEmail") String wEmail, HttpServletRequest request) {
+        int updateResult = userService.updateUserInfo(userInfo);
+		if (updateResult>0){
+			return "templates/contact";
+		} else {
 			return null;
 		}
 	}

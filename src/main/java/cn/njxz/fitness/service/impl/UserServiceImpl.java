@@ -4,8 +4,10 @@ import java.util.List;
 import java.util.Map;
 
 
+import cn.njxz.fitness.mapper.UserInfoMapper;
 import cn.njxz.fitness.mapper.UserMapper;
 import cn.njxz.fitness.model.User;
+import cn.njxz.fitness.model.UserInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,6 +21,8 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private UserMapper userMapper;
+	@Autowired
+	private UserInfoMapper userInfoMapper;
 	@Override
 	public int delete(int id) {
 		return userMapper.deleteByPrimaryKey(id);
@@ -65,6 +69,17 @@ public class UserServiceImpl implements UserService {
 	public int countUser() {
 		return userMapper.userCount();
 	}
+
+	@Override
+	public UserInfo findUserInfoByUId(int id) {
+		return userInfoMapper.selectByPrimaryKey(id);
+	}
+
+	@Override
+	public int updateUserInfo(UserInfo userInfo) {
+		return userInfoMapper.updateByPrimaryKeySelective(userInfo);
+	}
+
 	@Override
 	public List<User> selectByName(Map params) {
 		// TODO Auto-generated method stub
@@ -76,6 +91,7 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 		return userMapper.countselectByName(username);
 	}
+
 
 
 }

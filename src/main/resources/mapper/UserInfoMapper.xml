@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.njxz.fitness.mapper.UserInfoMapper">
+  <resultMap id="BaseResultMap" type="cn.njxz.fitness.model.UserInfo">
+    <id column="UI_U_ID" jdbcType="INTEGER" property="uiUId" />
+    <result column="UI_BIRTH" jdbcType="VARCHAR" property="uiBirth" />
+    <result column="UI_SEX" jdbcType="VARCHAR" property="uiSex" />
+    <result column="UI_HEIGHT" jdbcType="VARCHAR" property="uiHeight" />
+    <result column="UI_WEIGHT" jdbcType="VARCHAR" property="uiWeight" />
+    <result column="image" jdbcType="VARCHAR" property="image" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    UI_U_ID, UI_BIRTH, UI_SEX, UI_HEIGHT, UI_WEIGHT, image
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from userinfo
+    where UI_U_ID = #{uiUId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from userinfo
+    where UI_U_ID = #{uiUId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.njxz.fitness.model.UserInfo">
+    insert into userinfo (UI_U_ID, UI_BIRTH, UI_SEX, 
+      UI_HEIGHT, UI_WEIGHT, image
+      )
+    values (#{uiUId,jdbcType=INTEGER}, #{uiBirth,jdbcType=VARCHAR}, #{uiSex,jdbcType=VARCHAR}, 
+      #{uiHeight,jdbcType=VARCHAR}, #{uiWeight,jdbcType=VARCHAR}, #{image,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.njxz.fitness.model.UserInfo">
+    insert into userinfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="uiUId != null">
+        UI_U_ID,
+      </if>
+      <if test="uiBirth != null">
+        UI_BIRTH,
+      </if>
+      <if test="uiSex != null">
+        UI_SEX,
+      </if>
+      <if test="uiHeight != null">
+        UI_HEIGHT,
+      </if>
+      <if test="uiWeight != null">
+        UI_WEIGHT,
+      </if>
+      <if test="image != null">
+        image,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="uiUId != null">
+        #{uiUId,jdbcType=INTEGER},
+      </if>
+      <if test="uiBirth != null">
+        #{uiBirth,jdbcType=VARCHAR},
+      </if>
+      <if test="uiSex != null">
+        #{uiSex,jdbcType=VARCHAR},
+      </if>
+      <if test="uiHeight != null">
+        #{uiHeight,jdbcType=VARCHAR},
+      </if>
+      <if test="uiWeight != null">
+        #{uiWeight,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null">
+        #{image,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.njxz.fitness.model.UserInfo">
+    update userinfo
+    <set>
+      <if test="uiBirth != null">
+        UI_BIRTH = #{uiBirth,jdbcType=VARCHAR},
+      </if>
+      <if test="uiSex != null">
+        UI_SEX = #{uiSex,jdbcType=VARCHAR},
+      </if>
+      <if test="uiHeight != null">
+        UI_HEIGHT = #{uiHeight,jdbcType=VARCHAR},
+      </if>
+      <if test="uiWeight != null">
+        UI_WEIGHT = #{uiWeight,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null">
+        image = #{image,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where UI_U_ID = #{uiUId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.njxz.fitness.model.UserInfo">
+    update userinfo
+    set UI_BIRTH = #{uiBirth,jdbcType=VARCHAR},
+      UI_SEX = #{uiSex,jdbcType=VARCHAR},
+      UI_HEIGHT = #{uiHeight,jdbcType=VARCHAR},
+      UI_WEIGHT = #{uiWeight,jdbcType=VARCHAR},
+      image = #{image,jdbcType=VARCHAR}
+    where UI_U_ID = #{uiUId,jdbcType=INTEGER}
+  </update>
+</mapper>

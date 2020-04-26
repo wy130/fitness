@@ -1,6 +1,7 @@
 package cn.njxz.fitness.service;
 
 import cn.njxz.fitness.model.User;
+import cn.njxz.fitness.model.UserInfo;
 
 import java.util.List;
 import java.util.Map;
@@ -19,6 +20,8 @@ public interface UserService {
 
 	User  findUserByNameOrPhoneOrEmail(String name);
 	int countUser();
+	UserInfo findUserInfoByUId(int id);
+	int updateUserInfo(UserInfo userInfo);
 }
 
 

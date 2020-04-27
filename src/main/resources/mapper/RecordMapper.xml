@@ -113,14 +113,14 @@
     <include refid="Base_Column_List" />
     from record
   </select>
-  <select id="findRecordByUidAndCid" resultType="cn.njxz.fitness.model.Record">
+  <select id="findRecordByUidAndCid" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from record
     where R_U_ID = #{uid,jdbcType=INTEGER}
     and R_C_ID = #{cid,jdbcType=INTEGER}
   </select>
-  <select id="findRecordByUid" resultType="cn.njxz.fitness.model.Record">
+  <select id="findRecordByUid" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from record

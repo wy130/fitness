@@ -7,11 +7,9 @@ import cn.njxz.fitness.service.CourseService;
 import cn.njxz.fitness.service.IRecordService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.google.gson.JsonObject;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.persistence.criteria.CriteriaBuilder;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -110,6 +107,16 @@ public class CourseController {
             return courseList;
         }
     }
+    //后台管理员列表
+    @RequestMapping("/tocourseIndex")
+    public String tocourseIndex() {
+        return "templates/admin/courseindex";
+    }
+
+    @RequestMapping("/toclist")
+    public String toclist() {  //touserlist------------------------
+        return "templates/admin/courselist";
+    }
 
     /**
      * 获取所有课程
@@ -130,7 +137,6 @@ public class CourseController {
         params.put("username", "");
         List<Course> findAll = courseService.selectByName(params);
         int total = courseService.countCourse();
-        System.out.println("一共有多少数据" + total);
         JSONObject result = new JSONObject();
         String clist = JSONArray.fromObject(findAll).toString();
         result.put("rows", clist);
@@ -172,7 +178,7 @@ public class CourseController {
     /*后台管理员列表增加*/
     @RequestMapping("/toAdd")
     public String toAdd() {
-        return "templates/course/courseinfo";
+        return "templates/admin/courseinfo";
     }
 
     /**
@@ -186,7 +192,7 @@ public class CourseController {
     public String addCourse(Course course, HttpServletRequest request) {
         if (course != null) {
             courseService.addCourse(course);
-            return "templates/course/courselist"; //添加成功后转到course列表
+            return "templates/admin/courselist"; //添加成功后转到course列表
         } else {
             System.out.println("添加失败");
             return null;
@@ -206,7 +212,7 @@ public class CourseController {
         System.out.println("进入编辑" + index);
         Course course = courseService.findCourseById(index);
         model.addAttribute("course", course);
-        return "templates/course/editCourse";
+        return "templates/admin/editCourse";
     }
 
     /**
@@ -216,7 +222,7 @@ public class CourseController {
     public String updateCourse(Course course, HttpServletRequest request) {
         System.out.println("进入更新。。。。。");
         if (courseService.updateCourse(course) > 0) {
-            return "templates/course/courselist";
+            return "templates/admin/courselist";
         } else {
             return null;
         }
@@ -235,7 +241,7 @@ public class CourseController {
         if (ids.length() == 1) {
             System.out.println("-------" + ids);
             if (courseService.deleteCourse(Integer.parseInt(ids)) > 0) {
-                return "templates/course/courselist";
+                return "templates/admin/courselist";
             } else {
                 System.out.println("删除失败");
                 return null;
@@ -246,7 +252,7 @@ public class CourseController {
             for (int i = 0; i < num.length; i++) {
                 courseService.deleteCourse(Integer.parseInt(num[i]));
             }
-            return "templates/course/courselist";
+            return "templates/admin/courselist";
         }
     }
 }

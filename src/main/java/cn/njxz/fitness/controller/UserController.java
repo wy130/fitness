@@ -13,14 +13,13 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import cn.njxz.fitness.model.User;
 import cn.njxz.fitness.model.UserInfo;
+import cn.njxz.fitness.repetitive.annotation.ApiRepetitive;
 import cn.njxz.fitness.util.AliyunSmsUtil;
 import com.aliyuncs.exceptions.ClientException;
-import com.google.gson.JsonObject;
 import lombok.extern.slf4j.Slf4j;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
-import javax.annotation.Resource;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -235,6 +234,7 @@ public class UserController {
 
 	@PostMapping("/getPhoneVerification")
 	@ResponseBody
+	@ApiRepetitive(exsitTime = 5)
 	public String getPhoneVerification(String memberPhone) throws ClientException {
 		//  判断是否填写手机号码
 		if (memberPhone == null) {
@@ -242,7 +242,7 @@ public class UserController {
 			return "{\"msg\":\"no\"}";
 		}
 		//  判断用户填写的手机号码是否合法
-		if (!memberPhone.matches("^1(([358]\\d)|66|76|77|99)\\d{8}$")) {
+		if (!memberPhone.matches("^1[3456789]\\d{9}$")) {
 			//  手机号码不合法，返回失败提示
 			return "{\"msg\":\"no\"}";
 		}

@@ -79,6 +79,7 @@
                         }else {
                             document.getElementById("phoneErr").innerHTML="<font color='red'>该手机号已存在</font>";
                             document.getElementById("submit").disabled = true;
+                            document.getElementById("PhoneVerification").disabled = true;
                         }
                     },
                     error:function () {
@@ -87,10 +88,13 @@
             }else {
                 document.getElementById("phoneErr").innerHTML="<font color='red'>手机号格式不对</font>";
                 document.getElementById("submit").disabled = true;
+                document.getElementById("PhoneVerification").disabled = true;
             }
         }
+        var wait = 60;
         function getPhoneVerification(){
             var memberphoneinput = document.getElementById("mobile").value;
+            time(document.getElementById("PhoneVerification"));
             $.ajax({
                 type: 'post',//请求方式
                 url: 'http://localhost:8090/fitness/user/getPhoneVerification',//请求的 url地址  建议使用绝对地址
@@ -109,7 +113,20 @@
                 }
             });
         }
-
+        function time(o) {
+            if (wait == 0) {
+                o.removeAttribute("disabled");
+                o.innerHTML = "获取短信验证码";
+                wait = 60;
+            } else {
+                o.setAttribute("disabled", true);
+                o.innerHTML = wait + "秒后可以重新发送";
+                wait--;
+                setTimeout(function() {
+                    time(o)
+                }, 1000)
+            }
+        }
     </script>
     <script type="text/javascript" src="http://localhost:8090/fitness/static/js/admin/jquery-2.1.1.min.js"></script>
     <link rel="stylesheet" type="text/css" href="http://localhost:8090/fitness/static/css/login/normalize.css" th:href="@{http://localhost:8090/fitness/static/css/login/normalize.css}"/>
@@ -156,7 +173,7 @@
                     <div class="input_outer">
                         <input type="text" placeholder="短信验证码" style="height: 46px; width: 90px;" class="text"
                                id="imagecode" name="checkcode" onkeyup="checkimagecode()"/>
-                        <button type="button"  style="height: 20px; width: 140px; font-size: 12px;"
+                        <button id="PhoneVerification" type="button"  style="height: 20px; width: 140px; font-size: 12px;"
                                 onclick="getPhoneVerification()">
                             获取短信验证码</button>
                         <span style="color: red; height: 20px; width: 120px; font-size: 12px;"
@@ -191,5 +208,4 @@
     <script src="http://localhost:8090/fitness/static/js/login/rAF.js"></script>
     <script src="http://localhost:8090/fitness/static/js/login/demo-1.js"></script>
 </body>
-
 </html>

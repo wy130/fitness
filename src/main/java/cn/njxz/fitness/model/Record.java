@@ -1,6 +1,7 @@
 package cn.njxz.fitness.model;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class Record implements Serializable {
@@ -8,7 +9,7 @@ public class Record implements Serializable {
 
     private Integer rCId;
 
-    private Date rTime;
+    private LocalDateTime rTime;
 
     private Integer rUId;
 
@@ -30,11 +31,11 @@ public class Record implements Serializable {
         this.rCId = rCId;
     }
 
-    public Date getrTime() {
+    public LocalDateTime getrTime() {
         return rTime;
     }
 
-    public void setrTime(Date rTime) {
+    public void setrTime(LocalDateTime rTime) {
         this.rTime = rTime;
     }
 

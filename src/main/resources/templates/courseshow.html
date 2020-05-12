@@ -322,7 +322,8 @@
                         <div class="met-shownews-footer">
                             <ul class="pager pager-round">
                                 <li class='previous'>
-                                    <a  id="reserve"  th:text="${flag}?'取消预约':'我要预约'" th:value="${flag}">
+                                    <a  id="reserve"  th:text="${flag}?'取消预约':'我要预约'"
+                                        th:value="${flag}">
                                     </a>
                                 </li>
                                 <li></li>
@@ -623,8 +624,8 @@
                         console.log('通讯失败!');
                     }
                 });
-            })
+            });
 
-        })
+        });
         </script>
 </html>

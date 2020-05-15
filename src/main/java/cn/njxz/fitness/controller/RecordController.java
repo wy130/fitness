@@ -87,11 +87,11 @@ public class RecordController {
         PageHelper.startPage(pageNum, 8);
         List<Record> records = recordService.findRecordByUid(user.getUId());
         List<RecordVO> recordVOList = new ArrayList<>();
-        RecordVO recordVO = new RecordVO();
-        records.stream().map(e -> e.getrCId()).forEach(e -> {
-            Course course = courseService.findCourseById(e);
+        records.stream().forEach(e -> {
+            RecordVO recordVO = new RecordVO();
+            Course course = courseService.findCourseById(e.getrCId());
             BeanUtils.copyProperties(course,recordVO);
-            recordVO.setRId(e);
+            recordVO.setRId(e.getrId());
             recordVOList.add(recordVO);
         });
         if (records != null) {
@@ -102,8 +102,16 @@ public class RecordController {
     }
 
     @GetMapping("/cancelCourse")
-    public String cancelCourse(@RequestParam("rId")int rId) {
-
+    public String cancelCourse(HttpServletRequest request,@RequestParam("rId")Integer rId) {
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("user");
+        Record record = new Record();
+        if(rId!=null){
+            record = recordService.findRecordById(rId);
+        }
+        if(record.getrUId().equals(user.getUId())) {
+            recordService.deleteRecord(rId);
+        }
         return "redirect:/record/findAllRecord";
     }
 

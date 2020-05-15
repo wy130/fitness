@@ -291,7 +291,8 @@
                             <td th:text="${c.cLength}"></td>
                             <td ><p><img style="height: 100px;width: 200px"
                                                                    th:src="'http://localhost:8090/fitness/static/'+${c.image}"></p></td>
-                            <td><a th:href="@{'http://localhost:8080/weibo/blog/deleteCommentByCid/'+${c.rId}}">取消预约</td>
+                            <td><a th:href="@{'http://localhost:8090/fitness/record/cancelCourse?rId='+${c.rId}}">
+                                取消预约</td>
                         </tr>
                     </table>
                 </div>

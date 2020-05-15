@@ -274,7 +274,7 @@
                                 </a>
                                 >
                                 <a href='/a/lianxiwomen/'>
-                                    个人中心
+                                    预约记录
                                 </a>
                                 </li>
                             </ol>
@@ -282,78 +282,18 @@
                     </div>
                 </div>
                 <div class="met-editor lazyload clearfix">
-                    <form id="form1" onsubmit="return updWorker()" action="http://localhost:8080/homemaking/worker/updWorker" class="form-horizontal" enctype="multipart/form-data" method="post">
-                        <div class="form-group">
-                            <label for="wId" class="col-sm-2 control-label">编号：</label>
-                            <div class="col-sm-6">
-                                <input type="text" class="form-control" id="wId" name="wId" placeholder="编号" readonly>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">昵称：</label>
-                            <div class="col-sm-6">
-                                <input type="text" class="form-control" id="wName" name="wName" placeholder="昵称">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">手机号:</label>
-                            <div class="col-sm-6">
-                                <input type="text" class="form-control date" width="50%" id="wPhone" name="wPhone" placeholder="手机号">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">服务地址：</label>
-                            <div class="col-sm-6">
-                                <input type="text" class="form-control date" width="50%" id="wAddress" name="wAddress" placeholder="服务地址">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">性别：</label>
-                            <div class="col-sm-6">
-                                <label><input type="radio" name="wSex" id="a" value="1">男</label>
-                                <label><input type="radio" name="wSex" id="b" value="0" checked>女</label>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">服务类型</label>
-                            <div class="col-sm-6">
-                                <select name="wWtType" required placeholder="服务类型" id="listService" class="form-control">
-
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">收费类型</label>
-                            <div class="col-sm-6">
-                                <select name="wCName" required placeholder="服务类型" id="listService2" class="form-control">
-
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">收费：</label>
-                            <div class="col-sm-6">
-                                <input type="number" name="wCharge" id="wCharge">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">头像：</label>
-                            <div class="col-sm-6">
-                                <input type="file" name="img" id="wPhoto">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="wIntroduce" class="col-sm-2 control-label">自我介绍</label>
-                            <div class="col-sm-6">
-                                <textarea class="form-control" rows="3" name="wIntroduce" id="wIntroduce" placeholder="自我介绍"></textarea>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-offset-2 col-sm-10">
-                                <button type="submit" class="btn btn-default" style="background-color: #00bcd4" >修改</button>
-                            </div>
-                        </div>
-                    </form>
+                    <table>
+                        <tr >
+                            <td th:colspan="4" colspan="4">记录</td>
+                        </tr>
+                        <tr th:each="c:${pageInfo.list}" >
+                            <td th:text="${c.cName}"></td>
+                            <td th:text="${c.cLength}"></td>
+                            <td ><p><img style="height: 100px;width: 200px"
+                                                                   th:src="'http://localhost:8090/fitness/static/'+${c.image}"></p></td>
+                            <td><a th:href="@{'http://localhost:8080/weibo/blog/deleteCommentByCid/'+${c.rId}}">取消预约</td>
+                        </tr>
+                    </table>
                 </div>
             </div>
             <div class="col-md-3 met-conx">
@@ -363,20 +303,21 @@
                     </h3>
                     <ul>
                         <li>
+
+
+                            <div style="align-content: center;text-align: center;"  id="userInfo_image" >
+                            </div>
                             <a href="#"​ >
-                                        <span>
-                                            <img src="http://localhost:8090/fitness/static/picture/1-1g1251511180-l.jpg" alt="总教练 - 李美玲">
-                                        </span>
                                 <span id="userInfo_userName"></span>
                             </a>
                         </li>
                         <li>
-                            <a href="#"​ title="个人记录修改">
+                            <a href="http://localhost:8090/fitness/templates/contact.html"​ title="个人记录修改">
                                 个人记录修改
                             </a>
                         </li>
                         <li>
-                            <a href="#"​ title="预约记录">
+                            <a href="http://localhost:8090/fitness/record/findAllRecord"​ title="预约记录">
                                 预约记录
                             </a>
                         </li>
@@ -512,7 +453,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#"​ title="个人中心">
+                        <a href="#"​ title="">
                             个人中心
                         </a>
                     </li>
@@ -603,10 +544,11 @@
                         = '<font >欢迎，'+result.user.uname+'</font>';
                     document.getElementById("logout").innerHTML
                         = "<a href='http://localhost:8090/fitness/user/logout'>注销</a>";
-                    document.getElementById("logout").innerHTML
-                        = "<a href='http://localhost:8090/fitness/user/logout'>注销</a>";
                     document.getElementById("userInfo_userName").innerHTML
-                        = '<font >'+result.uname+'</font>';
+                        = '<font >'+result.user.uname+'</font>';
+                    document.getElementById("userInfo_image").innerHTML
+                        =' <img style=" height: 150px; width: 150px; " src="http://localhost:8090/fitness/static/'+result.userinfo.image+'">';
+
                 }else{
                     alert("请您先登录！");
                     window.location.href = "http://localhost:8090/fitness/templates/user/login.html";

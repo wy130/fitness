@@ -56,7 +56,10 @@
         #{rUId,jdbcType=INTEGER},
       </if>
     </trim>
+    ON DUPLICATE KEY UPDATE
+    R_TIME = values(R_TIME);
   </insert>
+
   <update id="updateByPrimaryKeySelective" parameterType="cn.njxz.fitness.model.Record">
     update record
     <set>

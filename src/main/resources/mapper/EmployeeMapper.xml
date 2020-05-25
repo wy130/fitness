@@ -3,11 +3,13 @@
 <mapper namespace="cn.njxz.fitness.mapper.EmployeeMapper">
   <resultMap id="BaseResultMap" type="cn.njxz.fitness.model.Employee">
     <id column="E_ID" jdbcType="INTEGER" property="eId" />
+    <result column="E_NAME" jdbcType="VARCHAR" property="eName" />
+    <result column="E_PWD" jdbcType="VARCHAR" property="ePwd" />
     <result column="SAL" jdbcType="VARCHAR" property="sal" />
     <result column="DESCRIBE" jdbcType="VARCHAR" property="describe" />
   </resultMap>
   <sql id="Base_Column_List">
-    E_ID, SAL, DESCRIBE
+    E_ID,E_NAME, E_PWD,SAL
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -68,4 +70,31 @@
       DESCRIBE = #{describe,jdbcType=VARCHAR}
     where E_ID = #{eId,jdbcType=INTEGER}
   </update>
+  <select id="selectByName" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List"/>
+    from employee
+    where  1 = 1
+    <if test="username!=null"> and E_NAME LIKE "%"#{username}"%"</if>
+    limit #{pageNum},#{pageSize}
+  </select>
+  <select id="countEmployee"  resultType="java.lang.Integer" >
+    select count(*) from employee
+  </select>
+  <select id="countselectByName" parameterType="cn.njxz.fitness.model.Employee"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from employee
+    where  1 = 1
+    <if test="username!=null"> and E_NAME LIKE "%"#{username}"%"</if>
+  </select>
+  <select id="selectAll" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from employee
+  </select>
+
+  <select id="findEmployeeByName"  parameterType="cn.njxz.fitness.model.Admin" resultMap="BaseResultMap" >
+    select  *  from employee where E_NAME = #{username}
+  </select>
 </mapper>

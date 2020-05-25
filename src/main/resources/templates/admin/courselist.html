@@ -114,7 +114,7 @@
             console.info(item);
 //		alert(item.id);
             var index=item.cId;
-            location.href="http://localhost:8090/fitness/course/toEditcourse?id="+index+"";
+            location.href="http://localhost:8090/fitness/course/toEditCourse?id="+index+"";
         }
 
         function doDelete() {
@@ -126,7 +126,7 @@
             }
             console.info(ids.join(","));
 //		alert(ids);
-            location.href="http://localhost:8090/fitness/course/delcourse?ids="+ids+"";
+            location.href="http://localhost:8090/fitness/course/delCourse?ids="+ids+"";
             $('#grid').datagrid('reload');
             $('#grid').datagrid('uncheckAll');
         }

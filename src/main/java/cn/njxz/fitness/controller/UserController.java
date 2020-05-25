@@ -1,5 +1,6 @@
 package cn.njxz.fitness.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.math.BigInteger;
@@ -10,6 +11,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 import cn.njxz.fitness.model.User;
 import cn.njxz.fitness.model.UserInfo;
@@ -32,6 +34,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -80,13 +83,12 @@ public class UserController {
 	public Map toIndex(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("user");
+		UserInfo userInfo = new UserInfo();
 		if (user != null) {
 			Map<String, Object> map = new HashMap<String, Object>();
 			map.put("user", user);
-			UserInfo userInfo = userService.findUserInfoByUId(user.getUId());
-			if (userInfo != null) {
-				map.put("userinfo", userInfo);
-			}
+			userInfo = userService.findUserInfoByUId(user.getUId());
+			map.put("userinfo", userInfo);
 			return map;
 		}
 		return null;
@@ -305,26 +307,7 @@ public class UserController {
 		}
 	}
 
-	/*
-	 * 个人中心
-	 */
-	@RequestMapping("/contact")
-	public String contact(HttpServletRequest request) {
-		//		User user = (User) request.getSession().getAttribute("user");
 
-		HttpSession session = request.getSession();
-		session.getAttribute("user");
-		System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^" + session.getAttribute("user"));
-		//如果会话中user对象为空，跳转到登录页面
-		if (session.getAttribute("user") == null) {
-			System.out.println("-----------------用户不存在----------");
-			request.setAttribute("error", "未登录，请登录后操作！谢谢");
-			return "/show/jsp/error2";
-		} else {
-			System.out.println("+++++++++++++++++++++buweikong+++++++++++++++++++++" + session.getAttribute("user"));
-			return "templates/contact"; //个人中心的页面
-		}
-	}
 
 	//后台管理用户
 	@RequestMapping("/touserIndex")
@@ -441,14 +424,26 @@ public class UserController {
 	}
 
 	@PostMapping("/updateUser")
-	public String updateUser(UserInfo userInfo,@RequestParam("wEmail") String wEmail, HttpServletRequest request) {
-		userInfo.setImage("");
-        int updateResult = userService.updateUserInfo(userInfo);
-		if (updateResult>0){
-			return "templates/contact";
-		} else {
-			return null;
+	public String updateUser(User user, UserInfo userInfo, MultipartFile uploadImage,HttpServletRequest request) throws
+																												 IOException {
+		String img_name = uploadImage.getOriginalFilename();
+		if (img_name != null && uploadImage != null && img_name.length() > 0) {
+			//向对应项目地址中，上传文件
+			String img_path = "E:\\\\workspace\\\\IdeaProjects\\fitness\\src\\main\\resources\\static\\picture\\";
+			String newFileName = UUID.randomUUID() + img_name.substring(img_name.lastIndexOf("."));
+			File file = new File(img_path + newFileName);
+			//文件写入磁盘
+			uploadImage.transferTo(file);
+			//将生成的图片名给userInfo对象    用于存在数据库表中  userInfo表的 image字段中
+			userInfo.setImage(newFileName);
+			int updateResult = userService.updateUserInfo(userInfo);
+			if (updateResult > 0) {
+				return "templates/contact";
+			} else {
+				return null;
+			}
 		}
+		return "templates/contact";
 	}
 
 	/**

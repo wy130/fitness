@@ -209,7 +209,6 @@ public class CourseController {
     @RequestMapping("/toEditCourse")
     public String getCourse(String id, Model model, HttpServletRequest request) {
         int index = Integer.valueOf(id);
-        System.out.println("进入编辑" + index);
         Course course = courseService.findCourseById(index);
         model.addAttribute("course", course);
         return "templates/admin/editCourse";

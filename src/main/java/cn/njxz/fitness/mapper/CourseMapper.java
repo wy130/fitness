@@ -29,6 +29,10 @@ public interface CourseMapper {
     List<Course> selectByName(Map params);
 
     List<Course> countselectByName(@Param("username") String username);
+
     int countCourse();
+
     List<Course> selectAll();
+
+    List<Course> selectCourseByEmployee(@Param("eId") Integer eId);
 }

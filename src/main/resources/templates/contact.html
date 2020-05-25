@@ -294,7 +294,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">昵称：</label>
                                     <div class="col-sm-6">
-                                        <input type="text" class="form-control" id="wName" name="wName"
+                                        <input type="text" class="form-control" id="wName" name="uName"
                                                placeholder="昵称" readonly>
                                     </div>
                                 </div>
@@ -302,14 +302,14 @@
                                     <label class="col-sm-2 control-label">手机号:</label>
                                     <div class="col-sm-6">
                                         <input type="text" class="form-control date" width="50%" id="wPhone"
-                                               name="wPhone" placeholder="手机号" readonly>
+                                               name="uPhone" placeholder="手机号" readonly>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">邮箱：</label>
                                     <div class="col-sm-6">
                                         <input type="text" class="form-control date" width="50%" id="wEmail"
-                                               name="wEmail" placeholder="邮箱">
+                                               name="uEmail" placeholder="邮箱">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -330,13 +330,13 @@
                                     <label class="col-sm-2 control-label">性别：</label>
                                     <div class="col-sm-6">
                                         <label><input type="radio" name="uiSex" id="a" value="男">男</label>
-                                        <label><input type="radio" name="uiSex" id="b" value="女" checked>女</label>
+                                        <label><input type="radio" name="uiSex" id="b" value="女" >女</label>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">头像：</label>
                                     <div class="col-sm-6">
-                                        <input type="file" name="image" id="wPhoto">
+                                        <input type="file" name="uploadImage"  id="wPhoto">
                                     </div>
                                 </div>
 
@@ -591,7 +591,7 @@
                     type: 'get',//请求方式
                     success: function(result) {
                         console.log(result);
-                        if(null != result && "" != result){
+                        if(null != result&&''!=result){
                             document.getElementById("userName").innerHTML
                         = '<font >欢迎，'+result.user.uname+'</font>';
                            document.getElementById("logout").innerHTML
@@ -599,14 +599,21 @@
                             document.getElementById("userInfo_userName").innerHTML
                                 = '<font >'+result.user.uname+'</font>';
                             document.getElementById("userInfo_image").innerHTML
-                                =' <img style=" height: 150px; width: 150px; " src="http://localhost:8090/fitness/static/'+result.userinfo.image+'">';
+                                =' <img style=" height: 150px; width: 150px; " src="http://localhost:8090/fitness/static/picture/'+result.userinfo.image+'">';
 
                             document.getElementById("wId").value=result.user.uid;
                             document.getElementById("wName").value=result.user.uname;
                             document.getElementById("wPhone").value=result.user.uphone;
                             document.getElementById("wEmail").value=result.user.uemail;
+                            if(result.userinfo != null){
                             document.getElementById("wHeight").value=result.userinfo.uiHeight;
                             document.getElementById("wWeight").value=result.userinfo.uiWeight;
+                                if(result.userinfo.uiSex=='男'){
+                                    document.getElementById("a").checked=true;
+                                    }else{
+                                    document.getElementById("b").checked=true;
+                                    }
+                                }
                         }else{
                             alert("请您先登录！");
                             window.location.href = "http://localhost:8090/fitness/templates/user/login.html";

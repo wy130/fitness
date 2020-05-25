@@ -153,21 +153,23 @@
     select
     <include refid="Base_Column_List" />
     from course
+    where C_STATUS = 1
   </select>
   <select id="findCourseByKey"  resultMap="BaseResultMap" parameterType="java.lang.String">
     select
     <include refid="Base_Column_List" />
     from course
     where C_NAME  LIKE "%"#{cName,jdbcType=VARCHAR}"%"
+    and C_STATUS = 1
   </select>
 
   <select id="findCourseByTrainFilter" resultMap="BaseResultMap" parameterType="java.lang.Integer">
     select
     <include refid="Base_Column_List" />
     from course
-    <where>
+    where C_STATUS = 1
     <if test="cClId != null">
-    C_CL_ID = #{cClId,jdbcType=INTEGER}
+    and C_CL_ID = #{cClId,jdbcType=INTEGER}
     </if>
     <if test="cCoId != null">
     and C_CO_ID = #{cCoId,jdbcType=INTEGER}
@@ -175,29 +177,38 @@
     <if test="cCtId != null">
     and C_CT_ID = #{cCtId,jdbcType=INTEGER}
     </if>
-    </where>
+
   </select>
   <select id="selectByName" resultMap="BaseResultMap" >
     select
     <include refid="Base_Column_List"/>
     from course
-    where 1=1
+    where  C_STATUS = 1
     <if test="username!=null"> and C_NAME LIKE "%"#{username}"%"</if>
     limit #{pageNum},#{pageSize}
   </select>
   <select id="countCourse"  resultType="java.lang.Integer" >
     select count(*) from course
+    where C_STATUS = 1
   </select>
   <select id="countselectByName" parameterType="cn.njxz.fitness.model.Course"  resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List"/>
     from course
-    where 1=1
+    where C_STATUS = 1
     <if test="username!=null"> and C_NAME LIKE "%"#{username}"%"</if>
   </select>
   <select id="selectAll" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from course
+    where  C_STATUS = 1
   </select>
+    <select id="selectCourseByEmployee" parameterType="java.lang.Integer"  resultMap="BaseResultMap">
+      select
+      <include refid="Base_Column_List" />
+      from course
+      where C_EP_ID = #{eId,jdbcType=INTEGER}
+      and C_STATUS = 1
+    </select>
 </mapper>

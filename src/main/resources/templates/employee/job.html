@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<ul class="blocks-2 blocks-sm-2 blocks-md-3 blocks-xlg-3  met-page-ajax met-grid"
+    id="met-grid" data-scale='0.8' th:each="c:${courseList}">
+    <li class=" shown" id="all-course">
+        <div class="widget widget-shadow">
+            <figure class="widget-header cover">
+                    <img class="cover-image" th:src="'http://localhost:8090/fitness/static/'+${c.image}" alt="阴健身 （2天）"
+                         style='height:200px;'>
+            </figure>
+            <li class="widget-title">
+                    <p th:text="${c.cName}"></p>
+            </li>
+
+        </div>
+    </li>
+</ul>
+</body>
+</html>

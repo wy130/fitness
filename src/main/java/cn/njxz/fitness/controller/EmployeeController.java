@@ -1,9 +1,7 @@
 package cn.njxz.fitness.controller;
 
-import cn.njxz.fitness.model.Admin;
 import cn.njxz.fitness.model.Course;
 import cn.njxz.fitness.model.Employee;
-import cn.njxz.fitness.service.AdminService;
 import cn.njxz.fitness.service.CourseService;
 import cn.njxz.fitness.service.IEmployeeService;
 import io.lettuce.core.dynamic.annotation.Param;
